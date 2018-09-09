@@ -1,0 +1,242 @@
+<div *ngIf="myUser != null ;" #editBlock>
+    <div class="row mt-5">
+        <div class="col-md-11 text-center">
+            <h1 class="h1-responsive">Rafgate: Project 1 ID : {{projectId}} </h1>
+
+        </div>
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a> Progress</a>
+                    </h4>
+                    <div class="progress" style="height: 20px">
+                        <div class="progress-bar" role="progressbar" style="width: 25%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a> Description</a>
+                    </h4>
+                    <p class="card-text">
+                        Ici on peut mettre une petite description du projet. </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a> Budget</a>
+                    </h4>
+                    <div class="progress" style="height: 20px">
+                        <div class="progress-bar" role="progressbar" style="width: 40%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">148.000€</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-5">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+
+
+            <!-- Stepper -->
+            <div class="steps-form-2">
+                <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+                    <div class="steps-step-2">
+                        <a type="button" class="btn btn-primary btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Basic Information">
+                            <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                            1
+                        </a>
+                    </div>
+                    <div class="steps-step-2">
+                        <a type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Personal Data">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            2
+                        </a>
+                    </div>
+                    <div class="steps-step-2">
+                        <a type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Terms and Conditions">
+                            <i class="fa fa-photo" aria-hidden="true"></i>
+                            3
+                        </a>
+                    </div>
+                    <div class="steps-step-2">
+                        <a type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            4
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4  align-items-center">
+        </div>
+        <div class="col-md-5  align-items-center">
+
+            <button *ngIf="myMenuItem == 'tasks';" type="submit" class="btn btn-primary btn-lg" (click)="selectMenu('tasks')">Tasks</button>
+            <button *ngIf="myMenuItem != 'tasks';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('tasks')">Tasks</button>
+
+            <button *ngIf="myMenuItem == 'issues';" type="submit" class="btn btn-primary btn-lg" (click)="selectMenu('issues')">Issues</button>
+            <button *ngIf="myMenuItem != 'issues';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('issues')">Issues</button>
+
+            <button *ngIf="myMenuItem == 'risks';" type="submit" class="btn btn-primary btn-lg" (click)="selectMenu('risks')">Risks</button>
+            <button *ngIf="myMenuItem != 'risks';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('risks')">Risks</button>
+
+        </div>
+        <div class="col-md-4  align-items-center">
+        </div>
+    </div>
+
+
+    <div *ngIf="myMenuItem == 'tasks' ;">
+        <div class="row mt-5 ">
+            <div class="col-md-3 offset-md-2 left-column mb-1">
+                <ul class="list-group">
+                    <li *ngFor="let category of categories" class="list-group-item d-flex justify-content-between align-items-center" (click)="onSelect(category)">
+                        {{category.name}}
+
+                        <div class="col-md-3">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <form>
+                            <input mdbActive type="text" placeholder="Add new category" id="form1" class="form-control" [(ngModel)]="newCategory.name"
+                                (keyup.enter)="addCategory()" name="addCat">
+                        </form>
+                        <span class="badge primary-color badge-pill">
+                            <a class="prefix">
+                                <i class="fa fa-plus" aria-hidden="true" (click)="addCategory()"></i>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-5 list mb-1">
+                <div class="row px-4 mt-3">
+                    <h3>{{selectedCategory.name}}</h3>
+                </div>
+                <div class="row px-4 mt-3">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="row px-4 mt-3">
+                    Priority
+                </div>
+                <div class="row px-4 mt-3">
+                    Owners
+                </div>
+                <div class="row px-4 mt-3">
+                    Dates
+                </div>
+                <div class="row px-4 mt-3">
+                    <div class="form-group full-width" *ngIf="todosForCat.length > 0">
+                        <form class="full-width">
+                            <h5>Todos for this step</h5>
+                            <div *ngFor="let todo of todosForCat">
+                                <input type="checkbox" id="{{todo.id}}" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
+                                <label for="{{todo.id}}" [ngClass]="{'strikethrough' : todo.complete}">{{todo.title}}</label>
+                                <button type="button" class="close" aria-label="Close" style="float: right;" (click)="removeTodo(todo)">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row px-4 mt-1">
+                    <div class="md-form">
+                        <form>
+                            <a class="prefix">
+                                <i class="fa fa-plus prefix" (click)="addTodo()"></i>
+                            </a>
+                            <input mdbActive type="text" id="form2" class="form-control" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()" name="addNew">
+                            <label for="form2">Add new task</label>
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+                <div class="row px-4 mt-3">
+                    <div class="form-group full-width" *ngIf="usersList.length > 0">
+                        <form class="full-width">
+                            <h5>Members of this step: </h5>
+                            <div *ngFor="let user of usersList">
+                                <label for="{{user.id}}">{{newUser.username}}</label>
+                                <button type="button" class="close" aria-label="Close" style="float: right;" (click)="removeUser(user)">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row px-4 mt-1">
+                    <div class="md-form">
+                        <form>
+                            <a class="prefix">
+                                <i class="fa fa-plus prefix" (click)="addUser()"></i>
+                            </a>
+                            <input mdbActive type="text" id="form2" class="form-control" [(ngModel)]="newUser.username" (keyup.enter)="addUser()" name="addNewUser">
+                            <label for="form2">Add new members</label>
+                        </form>
+
+                        <button type="button" class="btn btn-primary">Complete</button>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+    <ng-template #elseBlock>
+        <div class="col-md-5 test 5 list text-center">
+            <h5 class="pt-3">Choose category from menu in the left.</h5>
+            <p class="pt-5">You can also create a new category by typing the name and pressing the enter or clicking on the
+                <span class="badge primary-color badge-pill">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </span>
+
+
+
+            </p>
+        </div>
+    </ng-template>
+    <!--/div-->
+
+
+</div>

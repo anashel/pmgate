@@ -1,0 +1,78 @@
+<br/>
+<div align="center">
+  <h3 center>My Projects </h3>
+ 
+</div>
+<br/>
+<br/>
+<div class="card">
+  <div class="card-body">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-12">
+
+        <div class="input-group md-form form-sm form-2 pl-0 mb-0">
+          <input class="form-control my-0 py-1 grey-border" [(ngModel)]="searchProject" type="search" placeholder="Search" aria-label="Search">
+
+
+          <div class="input-group-append">
+            <span class="input-group-text waves-effect grey lighten-3" id="basic-addon1">
+              <a>
+                <i class="fa fa-search text-grey" aria-hidden="true"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+    <!--Table-->
+    <table class="table table-striped">
+
+      <!--Table head-->
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Progress</th>
+          <th></th>
+        </tr>
+      </thead>
+      <!--Table head-->
+
+      <!--Table body-->
+      <tbody>
+        <!-- 1st project -->
+        <tr *ngFor="let project of myProjects | projectpipe: searchProject">
+          <th scope="row">{{project.id}}</th>
+          <td>{{project.name}}</td>
+          <td>{{project.startdate}}</td>
+          <td>{{project.enddate}}</td>
+          <td>
+            Phase {{project.phase}}
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </td>
+          <td align="center">
+            <button type="button" (click)="openProject(project.id)"  class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
+          </td>
+        </tr>
+
+
+      </tbody>
+      <!--Table body-->
+    </table>
+    <!--Table-->
+
+  </div>
+</div>

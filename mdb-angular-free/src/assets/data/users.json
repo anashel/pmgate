@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "username": "Anas Helalouch",
+        "roleUser": "Analyste",
+        "validated": false,
+        "email": "Anas.Helalouch@gmail.com",
+        "password": "admin"
+    },
+    {
+        "id": 2,
+        "username": "Zinedine Zidane",
+        "password": "admin",
+        "roleUser": "Developeur",
+        "validated": false,
+        "email": "Zinedine.Zidane@gmail.com"
+    },
+    {
+        "id": 3,
+        "username": "Raul Gonzalez",
+        "password": "admin",
+        "roleUser": "Attaquant",
+        "validated": false,
+        "email": "Raul.Gonzalez@gmail.com"
+    },
+    {
+        "id": 4,
+        "username": "David Beckham",
+        "password": "admin",
+        "roleUser": "Project Manager",
+        "validated": false,
+        "email": "David.Beckham@gmail.com"
+    },
+    {
+        "id": 5,
+        "username": "admin",
+        "password": "admin",
+        "roleUser": "admin",
+        "validated": false,
+        "email": "Admin@gmail.com"
+    }
+]

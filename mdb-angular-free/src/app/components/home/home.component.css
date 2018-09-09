@@ -1,0 +1,33 @@
+.list {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+  }
+
+  .full-width {
+      width: 100%;
+  }
+
+
+  .example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+  .example-selected-value {
+    margin: 15px 0;
+  }
+  
+
+  .mat-radio-button ~ .mat-radio-button {
+    padding-right: 16px;
+  }
+  

@@ -1,0 +1,155 @@
+<br/>
+<div align="center">
+  <h3 center>Users </h3>
+</div>
+<br/>
+<br/>
+<div class="card">
+  <div class="card-body">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-12">
+
+        <div class="input-group md-form form-sm form-2 pl-0 mb-0">
+          <input class="form-control my-0 py-1 grey-border" [(ngModel)]="searchText" type="search" placeholder="Search" aria-label="Search">
+
+
+          <div class="input-group-append">
+            <span class="input-group-text waves-effect grey lighten-3" id="basic-addon1">
+              <a>
+                <i class="fa fa-search text-grey" aria-hidden="true"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+    <!--Table-->
+    <table class="table table-striped">
+
+      <!--Table head-->
+      <thead>
+        <tr>
+          <th>Identification</th>
+          <th>User name</th>
+          <th>E-mail address</th>
+          <th>Role</th>
+          <th></th>
+        </tr>
+      </thead>
+      <!--Table head-->
+
+      <!--Table body-->
+      <tbody>
+        <!-- 1st project -->
+        <tr *ngFor="let user of dataset | filter: searchText">
+
+          <!--*ngIf="user.validated == true; else validatedUser"> -->
+          <td>{{user.id}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>
+            {{user.roleUser}}
+          </td>
+          <td align="center">
+            <button type="button" class="btn btn-primary px-3" (click)="form.show(); editUser(user)" mdbWavesEffect>
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+
+
+
+            <button type="button" class="btn btn-red px-3" (click)="validateUser(user)" *ngIf="user.validated == false; else validatedUser">
+              <i class="fa fa-remove" aria-hidden="true"></i>
+            </button>
+
+            <button type="button" class="btn btn-green px-3" (click)="invalidateUser(user)" *ngIf="user.validated == true; else validatedUser">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+
+          </td>
+
+          <!--div #validatedUser>
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>
+              {{user.roleUser}}
+            </td>
+            <td align="center">
+              <button type="button" class="btn btn-primary px-3" (click)="form.show(); editUser(user)" mdbWavesEffect>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+
+
+
+              <button type="button" class="btn btn-primary px-3" (click)="validateUser(user)">
+                <i class="fa fa-cancel" aria-hidden="true"></i>
+              </button>
+            </td>
+
+          </div-->
+
+        </tr>
+
+
+      </tbody>
+      <!--Table body-->
+    </table>
+    <!--Table-->
+
+  </div>
+</div>
+
+
+
+<div mdbModal #form="mdb-modal" style="max-height: 90%" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header light-blue darken-3 white-text">
+        <h4 class="title">
+          <i class="fa fa-pencil"></i> {{selectedUser.username}}</h4>
+        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body mb-0">
+
+        <!-- Name -->
+        <input type="text" id="defaultContactFormName"  [(ngModel)]="selectedUser.username" class="form-control mb-4" value="{{selectedUser.username}}">
+
+        <!-- E-mail -->
+        <input type="text" id="defaultContactFormName"  [(ngModel)]="selectedUser.email" class="form-control mb-4" value="{{selectedUser.email}}">
+
+
+        <label>Role</label>
+        <select class="browser-default custom-select mb-4"  [(ngModel)]="selectedUser.roleUser" >
+          <option value="Analyste" selected>Analyste</option>
+          <option value="Développeur">Développeur</option>
+          <option value="Project Manager">Project Manager</option>
+        </select>
+
+
+
+          <button align="center" type="button" class="btn btn-blue-grey  waves-light" (click)="saveUser(selectedUser); form.hide()"
+            mdbWavesEffect>
+            Save
+          </button>
+     
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

@@ -1,0 +1,171 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div *ngIf="loggedIn == true; else loginBlock" #mainBlock>
+  <!-- Will contain pages -->
+  <nav class="navbar navbar-dark justify-content-between darkPurple">
+
+    <a class="navbar-brand" href="#">
+      <img src="/assets/logo/Rafgate.png" width="80" class="d-inline-block align-top" alt="">
+   
+      
+    </a>
+    <form class="form-inline my-1">
+        <a class="nav-link active" routerLink="users" > <i class="fa fa-user fa-lg"></i>  {{principal.username}} ( {{principal.roleUser}} )</a>
+      <button type="submit" class="btn btn-secondary btn-sm darkOrange" (click)="logoutUser()">Logout</button>
+      <!--button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-edit" href="#loginBlock">Edit</button-->
+      <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="projects" href="#loginBlock">Projects</button>
+      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="test" href="#loginBlock">New project</button>
+      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="users" href="#loginBlock">Users</button>
+      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="singleproject" href="#loginBlock">Single Project</button>
+
+      <!--
+      <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-home" href="#loginBlock">Home</button>
+      <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-msg">Message</button>
+      <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-order">Orders</button>
+        -->
+    </form>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
+
+
+
+<ng-template #loginBlock>
+
+
+  <div class="row mt-5">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 ">
+      <div class="col-sm-10">
+        <div class="text-center">
+          <img src="/assets/logo/Rafgate.png" width="150" alt="">
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+
+  <div class="row mt-5">
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <!-- Horizontal material form -->
+      <form>
+        <!-- Grid row -->
+        <div class="form-group row">
+          <!-- Material input -->
+          <!--label for="inputEmail3MD" class="col-sm-2 col-form-label" data-error="wrong" data-success="right">Email</label-->
+          <div class="col-sm-10">
+            <div class="md-form mt-0">
+              <i class="fa fa-envelope prefix"></i>
+              <input type="text" id="emailValue" name="mail" [(ngModel)]="emailValue" class="form-control validate" placeholder="Email">
+
+
+            </div>
+          </div>
+        </div>
+        <!-- Grid row -->
+
+        <!-- Grid row -->
+        <div class="form-group row">
+          <!-- Material input -->
+          <!--label for="inputPassword3MD" class="col-sm-2 col-form-label">Password</label-->
+          <div class="col-sm-10">
+            <div class="md-form mt-0">
+              <i class="fa fa-lock prefix"></i>
+              <input type="password" class="form-control" name="pwd" id="inputPassword3MD" placeholder="Password" [(ngModel)]="valuepassword">
+            </div>
+          </div>
+        </div>
+        <!-- Grid row -->
+
+        <!-- Grid row -->
+        <div class="form-group row text-center">
+          <div class="col-sm-10">
+            <button type="button" class="btn btn-blue-grey  waves-light" (click)="form.show()" mdbWavesEffect>
+              Register</button>
+            <button type="submit" class="btn btn-primary btn-lg" (click)="loginUser()">Sign in</button>
+
+
+          </div>
+          <div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog cascading-modal" role="document">
+              <!--Content-->
+              <div class="modal-content">
+
+                <!--Header-->
+                <div class="modal-header light-blue darken-3 white-text">
+                  <h4 class="title">
+                    <i class="fa fa-pencil"></i> Registration</h4>
+                  <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body mb-0">
+                  <!-- Default form register -->
+                  <form class="text-center border border-light p-5">
+
+                    <p class="h4 mb-4">Sign up</p>
+
+                    <div class="form-row mb-4">
+                      
+                        <!-- First name -->
+                        <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Username">
+                     
+                     
+                    </div>
+
+                    <!-- E-mail -->
+                    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+                    <!-- Password -->
+                    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+                    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                      At least 8 characters and 1 digit
+                    </small>
+
+                   
+
+                    <!-- Newsletter -->
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+                      <label class="custom-control-label" for="defaultRegisterFormNewsletter">Confirm registration to Rafgate</label>
+                    </div>
+
+                    <!-- Sign up button -->
+                    <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+
+
+                    <hr>
+
+                    <!-- Terms of service -->
+
+                  </form>
+                  <!-- Default form register -->
+                </div>
+              </div>
+              <!--/.Content-->
+            </div>
+          </div>
+
+        </div>
+        <!-- Grid row -->
+      </form>
+      <!-- Horizontal material form -->
+
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+
+
+
+
+</ng-template>

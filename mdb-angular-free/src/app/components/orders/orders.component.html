@@ -1,0 +1,171 @@
+<div class="alert alert-success" role="alert" *ngIf="alertMessage;">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="removeAlert()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="alert-heading success">New Order!</h4>
+    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that
+        you can see how spacing within an alert works with this kind of content.</p>
+    <hr>
+    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+
+
+<div class="row mt-10">
+    <div class="col-md-12 text-center">
+        <br/>
+        <h1 class="h1-responsive">Orders:</h1>
+        <br/>
+    </div>
+</div>
+
+<div class="row mt-12">
+    <div class="col-md-2 offset-md-1 left-column mb-1">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" (click)="addPopup()">
+                <form>
+                    <button type="button" class="btn btn-primary waves-light">Add new order</button>
+                </form>
+            </li>
+            <form>
+                <li *ngFor="let order of allOrders" class="list-group-item d-flex justify-content-between align-items-center" (click)="onSelect(order)">
+                    {{order.id}}
+                    <span class="badge badge-success">{{order.status}}</span>
+
+                </li>
+            </form>
+        </ul>
+    </div>
+    <div class="col-md-6 list mb-1" *ngIf="selectedOrder != null;">
+        <div class="row px-3 py-3">
+            <div class="col-md-12">
+                <h4>Order identification : {{selectedOrder.id}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!--div class="form-group full-width">
+                <ul>
+                    <li *ngFor="let orderItem of selectedOrder.orderedItems">
+                        {{orderItem.menuItem.name}} - {{orderItem.menuItem.price}} €
+                        <ul>
+                            <li *ngFor="let option of orderItem.itemOptions">
+                                {{option.name}}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                {{selectedOrder.totalprice}}
+                <br/>
+            </div-->
+
+                <mat-list>
+
+                    <mat-list-item *ngFor="let orderItem of selectedOrder.orderedItems">
+
+                        <mat-icon mat-list-icon>folder</mat-icon>
+                        <div class="row" mat-line>
+                            <div class="col-md-9">
+                                {{orderItem.menuItem.name}}
+                            </div>
+                            <div class="col-md-2 text-right">
+                                {{orderItem.menuItem.price}}€
+                            </div>
+                        </div>
+                        <div class="row" mat-line *ngFor="let option of orderItem.itemOptions">
+                            <div class="col-md-10"> - {{option.optionid.name}}</div>
+                            <div class="col-md-2 text-right"> + {{option.optionid.price}}€</div>
+                        </div>
+                        <br/>
+
+
+
+
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+
+                </mat-list>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="hidden" class="col-md-6 list mb-1" *ngIf="selectedOrder == null;">
+        <div class="row px-3 py-3">
+            <div class="col-md-12">
+                <h4>Menu list: </h4>
+            </div>
+        </div>
+        <div class="row px-4 mt-5">
+            <div class="col-md-12">
+               
+
+
+                <mat-expansion-panel *ngFor="let menuitem of allMenuItems" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header (click)="clickedItem(menuitem)">
+                        <mat-panel-title>
+                            {{menuitem.categoryName}} - {{menuitem.name}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{menuitem.price}}€
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <mat-selection-list #optionToSelect>
+                        <mat-list-option *ngFor="let possibleOption of menuitem.possibleOptions" [value]="possibleOption">
+                            {{possibleOption.name}} - {{possibleOption.price}}€
+
+                        </mat-list-option>
+
+                    </mat-selection-list>
+
+
+                    <form class="text-right">
+                        <button type="button" class="btn-primary waves-light" (click)="addItemToCart(menuitem, optionToSelect)">
+                            Add
+                        </button>
+                    </form>
+
+                </mat-expansion-panel>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div id="hidden" class="col-md-2 list mb-1" *ngIf="itemsInCart.length > 0;">
+
+
+        <mat-list>
+            <h3 mat-subheader>Order</h3>
+            <mat-list-item *ngFor="let orderInCart of itemsInCart">
+                <mat-divider></mat-divider>
+
+                <h3 mat-line>{{orderInCart.menuItem.name}}</h3>
+                <li mat-line *ngFor="let selectedItemOrder of orderInCart.itemOptions" class="display-3">
+                    {{selectedItemOrder.optionid.name}}
+                </li>
+                <br/>
+                <mat-divider></mat-divider>
+                <mat-icon (click)="removeItemFromOrder(orderInCart)">cancel</mat-icon>
+
+            </mat-list-item>
+
+        </mat-list>
+
+
+
+
+        <form *ngIf="itemsInCart.length > 0;" class="text-right">
+            <br/>
+            <button (click)="saveOrder()" class="btn-success">
+                Save Order
+            </button>
+        </form>
+    </div>
+</div>

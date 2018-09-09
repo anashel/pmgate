@@ -1,0 +1,135 @@
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+
+
+    <form class="text-center border border-light p-5">
+
+      <p class="h4 mb-4">Project Information</p>
+      <!-- Name -->
+      <input type="text" class="form-control mb-4" placeholder="Project Name" [ngModel]="projectName" >
+
+      <!-- Email -->
+      <!--p class="h5 mb-4">Responsible</p>
+      <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Responsible"-->
+
+
+
+      <!-- Start date -->
+      <p class="h5 mb-4">Start date</p>
+      <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date">
+
+      <!-- End date -->
+      <p class="h5 mb-4">End date</p>
+      <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date">
+
+
+      <!-- Subject -->
+      <p class="h5 mb-4">Type of project</p>
+      <select class="browser-default custom-select mb-4">
+        <option value="" disabled>Standard</option>
+        <option value="1" selected>First</option>
+        <option value="2">Second</option>
+      </select>
+
+      <p class="h5 mb-4">Project Manager(s)</p>
+      <ul *ngFor="let data of selectedUsers">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{data.username}}
+          <button type="button" class="btn btn-primary px-3" (click)="removeUser(data)">
+            <i class="fa fa-minus" aria-hidden="true"></i>
+          </button>
+
+        </li>
+
+      </ul>
+
+      <button type="button" class="btn btn-blue-grey  waves-light" (click)="form.show()" mdbWavesEffect>
+        Find
+      </button>
+
+      <p class="h5 mb-4">Analyst(s)</p>
+      <ul *ngFor="let data of selectedUsers">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{data.username}}
+          <button type="button" class="btn btn-primary px-3" (click)="removeUser(data)">
+            <i class="fa fa-minus" aria-hidden="true"></i>
+          </button>
+
+        </li>
+
+      </ul>
+
+      <button type="button" class="btn btn-blue-grey  waves-light" (click)="form.show()" mdbWavesEffect>
+        Find
+      </button>
+
+
+      <!-- Project Managers -->
+      <!--p class="h5 mb-4">Project Managers</p>
+
+      <select class="browser-default custom-select mb-4" [compareWith]="simpleCompare" [(ngModel)]="selectedManager">
+        <option *ngFor="let data of selectedUsers" [ngValue]="data">{{data.username}}</option>
+      </select>
+      <button type="submit" class="btn btn-primary px-3" (click)="addManager()">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button-->
+
+
+
+      <button type="submit" class="btn btn-info btn-block" (click)="saveProject()" href="#loginBlock">Save project</button>
+
+
+    </form>
+  </div>
+
+
+
+  <div class="col-sm-4">
+
+
+  </div>
+
+
+
+
+
+</div>
+
+<div mdbModal #form="mdb-modal" style="max-height: 90%" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header light-blue darken-3 white-text">
+        <h4 class="title">
+          <i class="fa fa-pencil"></i> Users</h4>
+        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body mb-0">
+        <!-- Default form register -->
+
+        <div class="md-form">
+          <input type="search" [(ngModel)]="searchText" placeholder="Search text">
+        </div>
+        <ul *ngFor="let data of dataset | filter: searchText">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{data.username}}
+            <button type="button" class="btn btn-primary px-3" (click)="selectUser(data)">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+
+          </li>
+        </ul>
+
+        <!-- Default form register -->
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

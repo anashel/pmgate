@@ -1,0 +1,65 @@
+<div class="row mt-5">
+    <div class="col-md-12 text-center">
+        <h1 class="h1-responsive">Messages:</h1>
+    </div>
+</div>
+
+<div class="row mt-5 ">
+    <div class="col-md-3 offset-md-2 left-column mb-1">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" (click)="addPopup()">
+                <form>
+                    <Button>Add new message</Button>
+                </form>
+                <form>
+                   <button type="button" (click)="refresh()" class="btn btn-primary waves-light" mdbRippleRadius>Refresh</button>
+                </form>
+
+            </li>
+            <form>
+                <li *ngFor="let message of houseMessages" class="list-group-item d-flex justify-content-between align-items-center" (click)="onSelect(message)">
+                    {{message.contentMessage}}
+                    <span class="badge primary-color badge-pill">0</span>
+                </li>
+            </form>
+        </ul>
+    </div>
+    <div class="col-md-5 list mb-1" *ngIf="selectedMessage;">
+        <div class="row px-3 py-3">
+            <div class="col-md-12">
+                <h4>Message identification : {{selectedMessage.id}}</h4>
+            </div>
+        </div>
+        <div class="row px-4 mt-3">
+            <div class="form-group full-width">
+                <form class="full-width">
+
+                    {{selectedMessage.contentMessage}}
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5 list mb-1" *ngIf="selectedMessage == null;">
+        <div class="row px-3 py-3">
+            <div class="col-md-12">
+                <h4>New message: </h4>
+            </div>
+        </div>
+        <div class="row px-4 mt-3">
+            <div class="col-md-12">
+                <form>
+                    <input mdbActive type="text" placeholder="Add sender" id="form1" class="form-control" [(ngModel)]="newMessage.senderId" (keyup.enter)="saveMessage()"
+                        name="addCat">
+                    <input mdbActive type="text" placeholder="Add receiver" id="form1" class="form-control" [(ngModel)]="newMessage.receiverId"
+                        (keyup.enter)="saveMessage()" name="addCat">
+                    <input mdbActive type="text" placeholder="Add new content" id="form1" class="form-control" [(ngModel)]="newMessage.contentMessage"
+                        (keyup.enter)="saveMessage()" name="addCat">
+                    <button type="button" (click)="saveMessage()" class="btn btn-primary waves-light" mdbRippleRadius>Save</button>
+                 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

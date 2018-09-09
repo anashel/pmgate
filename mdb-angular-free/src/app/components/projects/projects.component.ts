@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { Project } from '../../model/project/project';
+import { ProjectServiceService } from '../../model/project/project-service.service';
+import { Router } from '@angular/router';
+
+//import * as $ from 'jquery';
+
+
+@Component({
+  selector: 'app-projects',
+  templateUrl: './projects.component.html',
+  styleUrls: ['./projects.component.scss'],
+  providers: [ProjectServiceService]
+
+})
+export class ProjectsComponent implements OnInit {
+  myProjects: Project[];
+
+
+
+
+  constructor(private projectService: ProjectServiceService, private router: Router) {
+    this.myProjects = projectService.allProjects;
+
+  }
+
+
+
+  ngOnInit(): void {
+
+
+  }
+
+  logAllProjects() {
+    console.log(this.myProjects);
+    this.projectService.getJSON(); 
+  }
+
+  openProject(id: string) {
+    console.log(id);
+    this.projectService.getJSON(); 
+    this.router.navigateByUrl('/singleproject?projectid=' + id);
+
+  }
+
+
+
+}
