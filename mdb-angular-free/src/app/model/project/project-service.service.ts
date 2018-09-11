@@ -13,7 +13,8 @@ export class ProjectServiceService {
   }
 
   getAllProjects() {
-    let newProject: Project;
+    let newProject: Project = new Project(); 
+    newProject.budget;
     let userDataService = new UserDataService();
     var allUsers: User[] = userDataService.users;
     let randomUser = allUsers[0];

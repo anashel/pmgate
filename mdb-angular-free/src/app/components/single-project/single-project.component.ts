@@ -5,7 +5,6 @@ import { Project } from '../../model/project/project';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectServiceService } from '../../model/project/project-service.service';
 import { Topic } from '../../model/topics/topic';
-import { MatChipsModule } from '@angular/material';
 
 
 
@@ -60,6 +59,9 @@ export class SingleProjectComponent implements OnInit {
 
   addMember(member:User){
     this.selectedTopic.members.push(member);
+    this.userDataService.allowedUsers;
+    this.projectService.allProjects;
+    
   }
   removeMember(member:User){
      let toDelete = this.selectedTopic.members.indexOf(member); 
