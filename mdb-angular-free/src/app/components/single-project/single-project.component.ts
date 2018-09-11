@@ -5,8 +5,8 @@ import { Project } from '../../model/project/project';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectServiceService } from '../../model/project/project-service.service';
 import { Topic } from '../../model/topics/topic';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatChipsModule } from '@angular/material';
+
 
 
 
@@ -29,12 +29,13 @@ export class SingleProjectComponent implements OnInit {
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers'];
 
   listUsers: User[];
+  
 
 
 
   constructor(private userDataService: UserDataService, private projectService: ProjectServiceService, private route: ActivatedRoute) {
 
-
+ 
     this.myUser = userDataService.getPrincipal();
     this.myProject = new Project();
 
@@ -45,13 +46,28 @@ export class SingleProjectComponent implements OnInit {
     this.newTopic = new Topic();
     this.selectedTopic = new Topic();
 
+
     //set up selected section  and phase
     this.myMenuItem = "topics";
     this.selectedPhase = this.myProject.phase;
     this.listUsers = userDataService.users;
+
   }
 
   ngOnInit() {
+  }
+
+
+  addMember(member:User){
+    this.selectedTopic.members.push(member);
+  }
+  removeMember(member:User){
+     let toDelete = this.selectedTopic.members.indexOf(member); 
+     this.selectedTopic.members.splice(toDelete, 1);
+  }
+
+  submitTopic(){
+   
   }
 
   testButton() {

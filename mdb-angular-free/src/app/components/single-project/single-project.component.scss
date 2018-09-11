@@ -38,6 +38,18 @@
         overflow: auto;
     }
 
+    .listBlock{
+        flex-grow: 1;
+        max-height: 350px; 
+        border: 3px solid grey;
+        overflow: auto;
+
+    }
     .example-chip-list {
         width: 100%;
+      }
+
+      .greyColor{
+          background-color: grey;
+          color: white;
       }

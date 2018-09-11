@@ -3,7 +3,7 @@ import { Criteria } from "../criterias/criteria";
 
 export class Topic {
    
-    owner: User[];
+    members: User[];
     allowed: User[];
     startDate: Date; 
     endDate: Date; 
@@ -17,5 +17,6 @@ export class Topic {
     constructor(values: Object = {}) {
         Object.assign(this, values);
         this.status = "new"; 
+        this.members= [];
     }
 }
