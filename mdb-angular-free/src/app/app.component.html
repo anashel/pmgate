@@ -6,17 +6,21 @@
 
     <a class="navbar-brand" href="#">
       <img src="/assets/logo/Rafgate.png" width="80" class="d-inline-block align-top" alt="">
-   
-      
+
+
     </a>
     <form class="form-inline my-1">
-        <a class="nav-link active" routerLink="users" > <i class="fa fa-user fa-lg"></i>  {{principal.username}} ( {{principal.roleUser}} )</a>
+      <a class="nav-link active" routerLink="users">
+        <i class="fa fa-user fa-lg"></i> {{principal.username}} ( {{principal.roleUser}} )</a>
       <button type="submit" class="btn btn-secondary btn-sm darkOrange" (click)="logoutUser()">Logout</button>
       <!--button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-edit" href="#loginBlock">Edit</button-->
       <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="projects" href="#loginBlock">Projects</button>
-      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="test" href="#loginBlock">New project</button>
-      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="users" href="#loginBlock">Users</button>
-      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="singleproject" href="#loginBlock">Single Project</button>
+      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="test"
+        href="#loginBlock">New project</button>
+      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="users"
+        href="#loginBlock">Users</button>
+      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="singleproject"
+        href="#loginBlock">Single Project</button>
 
       <!--
       <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-home" href="#loginBlock">Home</button>
@@ -26,7 +30,9 @@
     </form>
   </nav>
 
-  <router-outlet></router-outlet>
+  <div style="background-color: #001133">
+    <router-outlet></router-outlet>
+  </div>
 
 </div>
 
@@ -118,11 +124,11 @@
                     <p class="h4 mb-4">Sign up</p>
 
                     <div class="form-row mb-4">
-                      
-                        <!-- First name -->
-                        <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Username">
-                     
-                     
+
+                      <!-- First name -->
+                      <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Username">
+
+
                     </div>
 
                     <!-- E-mail -->
@@ -134,7 +140,7 @@
                       At least 8 characters and 1 digit
                     </small>
 
-                   
+
 
                     <!-- Newsletter -->
                     <div class="custom-control custom-checkbox">

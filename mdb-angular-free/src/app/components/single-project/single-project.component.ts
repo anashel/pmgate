@@ -5,6 +5,7 @@ import { Project } from '../../model/project/project';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectServiceService } from '../../model/project/project-service.service';
 import { Topic } from '../../model/topics/topic';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
@@ -28,13 +29,13 @@ export class SingleProjectComponent implements OnInit {
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers'];
 
   listUsers: User[];
-  
+
 
 
 
   constructor(private userDataService: UserDataService, private projectService: ProjectServiceService, private route: ActivatedRoute) {
 
- 
+
     this.myUser = userDataService.getPrincipal();
     this.myProject = new Project();
 
@@ -56,20 +57,25 @@ export class SingleProjectComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  addMember(member:User){
-    this.selectedTopic.members.push(member);
-    this.userDataService.allowedUsers;
-    this.projectService.allProjects;
-    
-  }
-  removeMember(member:User){
-     let toDelete = this.selectedTopic.members.indexOf(member); 
-     this.selectedTopic.members.splice(toDelete, 1);
+  isSelected(member:User){
+    return this.selectedTopic.members.indexOf(member) == -1;
   }
 
-  submitTopic(){
-   
+  addMember(member: User) {
+    if (this.selectedTopic.members.indexOf(member) == -1) {
+      this.selectedTopic.members.push(member);
+      this.userDataService.allowedUsers;
+      this.projectService.allProjects;
+    }
+
+  }
+  removeMember(member: User) {
+    let toDelete = this.selectedTopic.members.indexOf(member);
+    this.selectedTopic.members.splice(toDelete, 1);
+  }
+
+  submitTopic() {
+
   }
 
   testButton() {

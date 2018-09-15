@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import { EditComponent } from './components/edit/edit.component'; 
 import { MessageComponent } from './components/messages/messages.component';
 import { OrderComponent } from './components/orders/orders.component';
-import { MatButtonModule, MatIconModule,MatExpansionModule, MatListModule, MatChipsModule, MatFormFieldModule } from '@angular/material';
+import { MatButtonModule, MatIconModule,MatExpansionModule, MatListModule, MatChipsModule, MatFormFieldModule, MatNativeDateModule, MatInputModule } from '@angular/material';
 import { ProjectsComponent } from './components/projects/projects.component';
 import {MatTableModule} from '@angular/material/table';
 import { TablecomponentsComponent } from './components/tablecomponents/tablecomponents.component';
@@ -20,8 +20,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
 import { ProjectpipePipe } from './pipes/projectpipe.pipe';
 import { SingleProjectComponent } from './components/single-project/single-project.component';
-
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
@@ -42,7 +41,10 @@ import { SingleProjectComponent } from './components/single-project/single-proje
     MatTableModule,
     FormsModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
     ,
     RouterModule.forRoot([
       {
