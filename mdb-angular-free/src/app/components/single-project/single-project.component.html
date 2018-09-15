@@ -299,6 +299,50 @@
             </div>
 
 
+            <div class="text-xs-center">
+                <h4>Criteria:</h4>
+            </div>  
+            <!--Table-->
+            <table class="table table-striped">
+
+              <!--Table head-->
+              <thead>
+                <tr>
+
+                  <th>Name</th>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Progress</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <!--Table head-->
+
+              <!--Table body-->
+              <tbody>
+                <!-- 1st project -->
+                <tr >
+                  <td>project.name</td>
+                  <td>project.startdate</td>
+                  <td>project.enddate</td>
+                  <td>
+                    
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </td>
+                  <td align="center">
+                    <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
+                  </td>
+                </tr>
+
+
+              </tbody>
+              <!--Table body-->
+            </table>
+            <!--Table-->
+
+
             <div *ngIf="selectedTopic.status !='new'" class="text-xs-center">
               <div class="md-form">
 
@@ -354,14 +398,23 @@
 
             </div>
 
-            <div class="row px-4 mt-3">
-              Dates
-              <mat-form-field>
-                  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-                </mat-form-field>
-                
+            <div>
+              <div class="row" class="text-xs-center">
+                <h4> Dates:</h4>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="h5 mb-4">Start date</p>
+                  <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date">
+                </div>
+                <div class="col-md-6">
+                  <p class="h5 mb-4">Start date</p>
+                  <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date">
+                </div>
+              </div>
+
+              <!-- Start date -->
+
             </div>
 
 
@@ -390,29 +443,17 @@
 
               </form>
 
-              <h4>Delivery:</h4>
-
-              <form>
-
-                <fieldset class="form-group">
-                  <input name="group2" type="radio" id="radio3" checked="checked">
-                  <label for="radio3">Ship to Patient</label>
-                </fieldset>
-
-                <fieldset class="form-group">
-                  <input name="group2" type="radio" id="radio4">
-                  <label for="radio4">Ship to Clinic</label>
-                </fieldset>
-
-                <fieldset class="form-group">
-                  <input name="group2" type="radio" id="radio5">
-                  <label for="radio5">Patient Pickup</label>
-                </fieldset>
-
-              </form>
 
             </div>
             <br>
+
+
+
+
+
+
+
+            <!-- Submit options-->
 
             <div class="text-xs-center">
               <button class="btn btn-default" (click)="submitTopic()">Submit</button>

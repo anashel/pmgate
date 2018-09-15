@@ -13,7 +13,7 @@
   }
 
   .darkPurple{
-      background: lightskyblue	; 
+      background: white	; 
   }
 
   .darkOrange{
@@ -61,3 +61,7 @@
     background-color: blue !important;}
 .steps-form-2 .steps-row-2 .steps-step-2 .btn-circle-2 .fa {
     font-size: 1.7rem; }
+
+    .whiteText{
+        color:white;
+    }
