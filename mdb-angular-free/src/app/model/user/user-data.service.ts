@@ -57,6 +57,7 @@ export class UserDataService {
     var user: User;
     user = JSON.parse(localStorage.getItem("principal"));
     return user;
+    
 
   }
 

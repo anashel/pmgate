@@ -240,23 +240,24 @@
 </div>
 <br/>
 <br/>
-<h2 class="text-center" style="color:white">
-  Selected phase: {{selectedPhase}}
-</h2>
+
 <!-- Topics -->
 <div *ngIf="myMenuItem == 'topics' ;">
+  <h2 class="text-center" style="color:white">
+    Selected phase: {{selectedPhase}}
+  </h2>
   <div class="row mt-5 ">
 
-    <div class="col-md-2 offset-md-2 left-column mb-1">
+    <div class="col-md-2 offset-md-1 left-column mb-1">
 
       <ul class="list-group">
         <li *ngFor="let topic of myTopics" class="list-group-item d-flex justify-content-between align-items-center" (click)="onSelectTopic(topic)">
           {{topic.name}}
- 
-          <span *ngIf="topic.status == 'new'"class="badge red">{{topic.status}}</span>
-                <span *ngIf="topic.status == 'pending'"class="badge orange">{{topic.status}}</span>
-                <span *ngIf="topic.status == 'open'"class="badge yellow">{{topic.status}}</span>
-                <span *ngIf="topic.status == 'closed'"class="badge green">{{topic.status}}</span>
+
+          <span *ngIf="topic.status == 'new'" class="badge red">{{topic.status}}</span>
+          <span *ngIf="topic.status == 'pending'" class="badge orange">{{topic.status}}</span>
+          <span *ngIf="topic.status == 'open'" class="badge yellow">{{topic.status}}</span>
+          <span *ngIf="topic.status == 'closed'" class="badge green">{{topic.status}}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <form>
@@ -272,7 +273,7 @@
       </ul>
     </div>
 
-    <div class="col-md-6 list mb-1">
+    <div class="col-md-8 list mb-0">
       <div class="card">
         <div class="card-body mb-4 text-center">
           <div *ngIf="selectedTopic.name != null">
@@ -283,11 +284,11 @@
               <h3>
                 <i class="fa fa-heartbeat"></i> {{selectedTopic.name}}
 
-                <span *ngIf="selectedTopic.status == 'new'"class="badge red">{{selectedTopic.status}}</span>
-                <span *ngIf="selectedTopic.status == 'pending'"class="badge orange">{{selectedTopic.status}}</span>
-                <span *ngIf="selectedTopic.status == 'open'"class="badge yellow">{{selectedTopic.status}}</span>
-                <span *ngIf="selectedTopic.status == 'closed'"class="badge green">{{selectedTopic.status}}</span>
-              </h3> 
+                <span *ngIf="selectedTopic.status == 'new'" class="badge red">{{selectedTopic.status}}</span>
+                <span *ngIf="selectedTopic.status == 'pending'" class="badge orange">{{selectedTopic.status}}</span>
+                <span *ngIf="selectedTopic.status == 'open'" class="badge yellow">{{selectedTopic.status}}</span>
+                <span *ngIf="selectedTopic.status == 'closed'" class="badge green">{{selectedTopic.status}}</span>
+              </h3>
               <hr class="m-t-2 m-b-2">
             </div>
             <div class="text-xs-center">
@@ -310,8 +311,8 @@
 
 
             <div class="text-xs-center">
-                <h4>Criteria:</h4>
-            </div>  
+              <h4>Criteria:</h4>
+            </div>
             <!--Table-->
             <table class="table table-striped">
 
@@ -331,12 +332,12 @@
               <!--Table body-->
               <tbody>
                 <!-- 1st project -->
-                <tr >
+                <tr>
                   <td>project.name</td>
                   <td>project.startdate</td>
                   <td>project.enddate</td>
                   <td>
-                    
+
                     <div class="progress">
                       <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -345,34 +346,34 @@
                     <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
                   </td>
                 </tr>
-                <tr >
-                    <td>project.name</td>
-                    <td>project.startdate</td>
-                    <td>project.enddate</td>
-                    <td>
-                      
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td>
-                    <td align="center">
-                      <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
-                    </td>
-                  </tr>
-                  <tr >
-                      <td>project.name</td>
-                      <td>project.startdate</td>
-                      <td>project.enddate</td>
-                      <td>
-                        
-                        <div class="progress">
-                          <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </td>
-                      <td align="center">
-                        <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
-                      </td>
-                    </tr>
+                <tr>
+                  <td>project.name</td>
+                  <td>project.startdate</td>
+                  <td>project.enddate</td>
+                  <td>
+
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </td>
+                  <td align="center">
+                    <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>project.name</td>
+                  <td>project.startdate</td>
+                  <td>project.enddate</td>
+                  <td>
+
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </td>
+                  <td align="center">
+                    <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
+                  </td>
+                </tr>
 
 
               </tbody>
@@ -466,18 +467,15 @@
 
                 <fieldset class="form-group">
                   <input name="priority" type="radio" id="radio1" checked="checked">
-                  <label for="radio1">High</label>
+                  <label for="radio1">Major</label>
                 </fieldset>
 
                 <fieldset class="form-group">
                   <input name="priority" type="radio" id="radio2">
-                  <label for="radio2">Medium</label>
+                  <label for="radio2">Minor</label>
                 </fieldset>
 
-                <fieldset class="form-group">
-                  <input name="priority" type="radio" id="radio3">
-                  <label for="radio3">Low</label>
-                </fieldset>
+             
 
               </form>
 
