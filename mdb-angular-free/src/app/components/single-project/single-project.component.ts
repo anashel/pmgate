@@ -41,8 +41,8 @@ export class SingleProjectComponent implements OnInit {
 
     const projectIdInParam: string = this.route.snapshot.queryParamMap.get('projectid');
     this.myProject = projectService.getProject(+projectIdInParam);
-    console.log(this.myProject);
-    this.myTopics = [];
+
+    this.myTopics = this.myProject.topics; 
     this.newTopic = new Topic();
     this.selectedTopic = new Topic();
 
@@ -74,8 +74,19 @@ export class SingleProjectComponent implements OnInit {
     this.selectedTopic.members.splice(toDelete, 1);
   }
 
-  submitTopic() {
+  submitTopicForValidation(){
+    this.selectedTopic.status = "pending";
+    console.log(this.myProject);
+    
+  }
 
+  validateTopic(){
+    this.selectedTopic.status = "open";
+  }
+
+
+  closeTopic(){
+    this.selectedTopic.status = "closed";
   }
 
   testButton() {
@@ -85,7 +96,7 @@ export class SingleProjectComponent implements OnInit {
   addTopic() {
     console.log(this.newTopic);
     let toSaveTopic: Topic = this.newTopic;
-    this.myTopics.push(toSaveTopic);
+    this.myProject.topics.push(toSaveTopic);
 
     this.newTopic = new Topic();
 
@@ -101,6 +112,6 @@ export class SingleProjectComponent implements OnInit {
   }
   selectMenu(selectedMenu: string) {
     this.myMenuItem = selectedMenu;
-  }
+  } 
 
 }

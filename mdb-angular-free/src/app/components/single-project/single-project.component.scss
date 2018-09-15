@@ -31,6 +31,16 @@
     border-radius: 15px;
     margin-top: 0; }
 
+    .steps-form .steps-row .steps-step-big .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+        margin-top: 0; }
+
 .mat-selection-list {
         flex-grow: 1;
         max-height: 350px; 
@@ -50,6 +60,6 @@
       }
 
       .greyColor{
-          background-color: lightblue;
+          background-color: #8385EB;
           color: white;
       }

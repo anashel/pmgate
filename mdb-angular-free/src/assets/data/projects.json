@@ -14,7 +14,33 @@
     "CCM": [],
     "QM": [],
     "SM": [],
-    "topics": [],
+    "topics": [
+      {
+        "status": "new",
+        "members": [],
+        "name": "First Action"
+      },
+      {
+        "status": "pending",
+        "members": [],
+        "name": "Second action"
+      },
+      {
+        "status": "open",
+        "members": [],
+        "name": "Second action"
+      },
+      {
+        "status": "closed",
+        "members": [],
+        "name": "Second action"
+      },
+      {
+        "status": "closed",
+        "members": [],
+        "name": "Second action"
+      }
+    ],
     "loges": [],
     "progress": 0,
     "budget": 2000000,
