@@ -16,19 +16,12 @@ import { Router } from '@angular/router';
 export class ProjectsComponent implements OnInit {
   myProjects: Project[];
 
-
-
-
   constructor(private projectService: ProjectServiceService, private router: Router) {
     this.myProjects = projectService.allProjects;
-
   }
 
 
-
   ngOnInit(): void {
-
-
   }
 
   logAllProjects() {

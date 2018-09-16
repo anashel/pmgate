@@ -293,14 +293,14 @@
               <tbody>
                 <tr>
                   <td>
-                    <button type="button" class="btn btn-blue-grey btn-rounded btn-md my-0" (click)="goToPreviousPhase()">
+                    <button *ngIf="selectedPhase == myProject.phase" type="button" class="btn btn-blue-grey btn-rounded btn-md my-0" (click)="goToPreviousPhase()">
                       <<</button>
                   </td>
                   <td>
                     Status: {{value}}%
                   </td>
                   <td>
-                    <button type="button" class="btn btn-green btn-rounded btn-md my-0" (click)="goToNextPhase()">>></button>
+                    <button  *ngIf="selectedPhase == myProject.phase" type="button" class="btn btn-green btn-rounded btn-md my-0" (click)="goToNextPhase()">>></button>
                   </td>
                 </tr>
               </tbody>
@@ -352,7 +352,7 @@
     <div class="col-md-8 list mb-0">
       <div class="card">
         <div class="card-body mb-4 text-center">
-          <div *ngIf="selectedTopic.name != null">
+          <div *ngIf="selectedTopic != null">
 
 
 
@@ -586,7 +586,7 @@
 
           </div>
 
-          <div *ngIf="selectedTopic.name == null">
+          <div *ngIf="selectedTopic == null">
             Please select a topic.
 
 

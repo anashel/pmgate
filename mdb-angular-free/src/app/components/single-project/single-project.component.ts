@@ -10,8 +10,6 @@ import { Criteria } from '../../model/criterias/criteria';
 
 
 
-
-
 @Component({
   selector: 'app-single-project',
   templateUrl: './single-project.component.html',
@@ -28,12 +26,7 @@ export class SingleProjectComponent implements OnInit {
   myTopics: Topic[];
   newTopic: Topic;
   newCriteria: Criteria;
-
   listUsers: User[];
-
-  get value() {
-    return this.getTopicProgressValue();
-  }
 
   progressColor = 'dribbble';
 
@@ -44,8 +37,7 @@ export class SingleProjectComponent implements OnInit {
     this.myProject = projectService.getProject(+projectIdInParam);
     this.newTopic = new Topic();
     this.newCriteria = new Criteria();
-    this.selectedTopic = new Topic();
-
+    this.selectedTopic = null;
     //set up selected section  and phase
     this.myMenuItem = "topics";
     this.selectedPhase = this.myProject.phase;
@@ -56,7 +48,12 @@ export class SingleProjectComponent implements OnInit {
   ngOnInit() {
   }
 
+
   initialize() {
+  }
+
+  get value() {
+    return this.getTopicProgressValue();
   }
 
 
@@ -70,8 +67,8 @@ export class SingleProjectComponent implements OnInit {
       this.userDataService.allowedUsers;
       this.projectService.allProjects;
     }
-
   }
+
   removeMember(member: User) {
     let toDelete = this.selectedTopic.members.indexOf(member);
     this.selectedTopic.members.splice(toDelete, 1);
@@ -91,7 +88,6 @@ export class SingleProjectComponent implements OnInit {
   }
 
   testButton() {
-
   }
 
   addTopic() {
@@ -104,10 +100,13 @@ export class SingleProjectComponent implements OnInit {
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
   }
 
+  /**
+   * 
+   * @param topic 
+   */
   onSelectTopic(topic: Topic) {
     this.selectedTopic = topic;
     console.log(this.selectedTopic);
-
   }
 
   /**
@@ -117,6 +116,7 @@ export class SingleProjectComponent implements OnInit {
   selectPhase(phase: number) {
     this.selectedPhase = phase;
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == phase);
+    this.selectedTopic = null;
   }
 
   /**
@@ -138,6 +138,10 @@ export class SingleProjectComponent implements OnInit {
     return Math.round(divided);
   }
 
+  /**
+   * 
+   * @param status 
+   */
   getNumberTopicByStatus(status: String) {
     let filteredTopics: Topic[] = [];
     filteredTopics = this.myProject.topics.filter((topic: Topic) => topic.status == status && topic.phase == this.selectedPhase);
@@ -154,18 +158,18 @@ export class SingleProjectComponent implements OnInit {
     this.myProject.phase++;
     this.selectedPhase++;
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
+    this.selectedTopic = null;
   }
 
   goToPreviousPhase() {
     this.myProject.phase--;
     this.selectedPhase--;
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
+    this.selectedTopic = null;
   }
 
   addCriteria() {
     let that = this;
-    console.log(that.selectedTopic.criterias);
-
     let toSaveCriteria = this.newCriteria;
     this.selectedTopic.criterias.push(toSaveCriteria);
     this.newCriteria = new Criteria();
@@ -184,15 +188,16 @@ export class SingleProjectComponent implements OnInit {
     return true;
   }
 
+  /**
+   * Verify if the criteria contains enough information. 
+   */
   isNewCriteriaComplete() {
-    let c = this.newCriteria; 
-    if (c.name != null && c.owner != null && c.startdate != null && c.enddate != null)
-    {
-      return true; 
+    let c = this.newCriteria;
+    if (c.name != null && c.owner != null && c.startdate != null && c.enddate != null) {
+      return true;
     }
-    else
-    {
-      return false; 
+    else {
+      return false;
     }
   }
 
