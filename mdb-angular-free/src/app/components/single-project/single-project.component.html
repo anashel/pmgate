@@ -238,25 +238,40 @@
             <table class="table">
               <tbody>
                 <tr>
+                  <td>
+                    <i class="fa fa-circle blue-text" aria-hidden="true"></i>
+                  </td>
                   <td>Total topics:</td>
                   <td>{{getNumberTopics()}}</td>
                 </tr>
                 <tr>
+                  <td>
+                    <i class="fa fa-circle red-text" aria-hidden="true"></i>
+                  </td>
                   <td>New:</td>
                   <td>{{getNumberTopicByStatus("new")}}</td>
                 </tr>
                 <tr>
+                  <td>
+                    <i class="fa fa-circle orange-text" aria-hidden="true"></i>
+                  </td>
                   <td>Pending:</td>
                   <td>{{getNumberTopicByStatus("pending")}}</td>
                 </tr>
                 <tr>
+                  <td>
+                    <i class="fa fa-circle yellow-text" aria-hidden="true"></i>
+                  </td>
                   <td>Open:</td>
                   <td>{{getNumberTopicByStatus("open")}}</td>
                 </tr>
                 <tr>
-                    <td>Closed:</td>
-                    <td>{{getNumberTopicByStatus("closed")}}</td>
-                  </tr>
+                  <td>
+                    <i class="fa fa-circle green-text" aria-hidden="true"></i>
+                  </td>
+                  <td>Closed:</td>
+                  <td>{{getNumberTopicByStatus("closed")}}</td>
+                </tr>
               </tbody>
 
             </table>
@@ -264,13 +279,32 @@
           </div>
           <br/>
           <div class="row">
-       
+
             <div class="col-md-4">
-              <h4>Progress:</h4>
+              <h5>Completion:</h5>
             </div>
             <div class="col-md-8">
               <mat-progress-bar [value]="value" [color]="progressColor"></mat-progress-bar>
             </div>
+          </div>
+
+          <div class="row">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-blue-grey btn-rounded btn-md my-0" (click)="goToPreviousPhase()">
+                      <<</button>
+                  </td>
+                  <td>
+                    Status: {{value}}%
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-green btn-rounded btn-md my-0" (click)="goToNextPhase()">>></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -279,6 +313,7 @@
   <div class="col-md-4  align-items-center">
   </div>
 </div>
+
 <br/>
 <br/>
 
@@ -364,7 +399,8 @@
                   <th>Name</th>
                   <th>Start</th>
                   <th>End</th>
-                  <th>Progress</th>
+                  <th>Owner</th>
+                  <th>Comment</th>
                   <th></th>
                 </tr>
               </thead>
@@ -373,46 +409,54 @@
               <!--Table body-->
               <tbody>
                 <!-- 1st project -->
-                <tr>
-                  <td>project.name</td>
-                  <td>project.startdate</td>
-                  <td>project.enddate</td>
+                <tr *ngFor="let criteria of selectedTopic.criterias">
                   <td>
-
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    {{criteria.name}}
                   </td>
-                  <td align="center">
-                    <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
+                  <td>
+                    {{criteria.startdate}}
+                  </td>
+                  <td>
+                    {{criteria.enddate}}
+                  </td>
+                  <td>
+                    {{criteria.owner.username}}
+                  </td>
+                  <td>
+                    {{criteria.comment}}
+                  </td>
+                  <td>
+                    <i *ngIf="canEditCriterias()" class="fa fa-close red-text" aria-hidden="true" (click)="removeCriteria(criteria)"></i>
                   </td>
                 </tr>
-                <tr>
-                  <td>project.name</td>
-                  <td>project.startdate</td>
-                  <td>project.enddate</td>
-                  <td>
 
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                <tr>
+                  <td>
+                    <input type="text" class="form-control" name="pwd" id="inputNamePRoject" placeholder="Name of criteria" [(ngModel)]="newCriteria.name">
+                  </td>
+                  <td>
+                    <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="newCriteria.startdate">
+                  </td>
+                  <td>
+                    <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="newCriteria.enddate">
+                  </td>
+                  <td>
+                    <mat-form-field>
+                      <mat-select placeholder="Select owner" [(ngModel)]="newCriteria.owner">
+                        <mat-option *ngFor="let member of selectedTopic.members" [value]="member">
+                          {{member.username}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <textarea matInput placeholder="Leave a comment" [(ngModel)]="newCriteria.comment">
+                          </textarea>
+                    </mat-form-field>
                   </td>
                   <td align="center">
-                    <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>project.name</td>
-                  <td>project.startdate</td>
-                  <td>project.enddate</td>
-                  <td>
-
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </td>
-                  <td align="center">
-                    <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
+                    <button type="button" (click)="addCriteria()" class="btn btn-primary btn-rounded btn-sm my-0">Add</button>
                   </td>
                 </tr>
 
@@ -427,12 +471,12 @@
               <div class="md-form">
 
                 <h4>Progress:</h4>
-
-
-                <div class="row px-4 mt-3">
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="row">
+                  <div class="col-md-2">{{selectedTopic.startdate}}</div>
+                  <div class="col-md-8">
+                    <mat-progress-bar value="80" [color]="progressColor"></mat-progress-bar>
                   </div>
+                  <div class="col-md-2">{{selectedTopic.enddate}}</div>
                 </div>
               </div>
             </div>
@@ -453,17 +497,15 @@
 
                 <br/>
 
-
-                <div class="listBlock">
-
+                <div class="listBlockSearch">
                   <i class="fa fa-search prefix fa-lg"></i>
                   <input type="search" [(ngModel)]="searchText" placeholder="Search text" />
-
+                </div>
+                <br/>
+                <br/>
+                <div class="listBlock">
                   <ul class="list-group ">
-
                     <li *ngFor="let user of listUsers | filter: searchText" class="list-group-item d-flex justify-content-between align-items-center">
-
-
                       {{user.username}}
                       <i *ngIf="isSelected(user)==false" class="fa fa-close red-text" aria-hidden="true" (click)="removeMember(user)"></i>
                       <i *ngIf="isSelected(user)" class="fa fa-plus blue-text" aria-hidden="true" (click)="addMember(user)"></i>
@@ -485,11 +527,11 @@
               <div class="row">
                 <div class="col-md-6">
                   <p class="h5 mb-4">Start date</p>
-                  <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date">
+                  <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="selectedTopic.startdate">
                 </div>
                 <div class="col-md-6">
                   <p class="h5 mb-4">Start date</p>
-                  <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date">
+                  <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="selectedTopic.enddate"> 
                 </div>
               </div>
 
@@ -533,9 +575,9 @@
             <!-- Submit options-->
 
             <div class="text-xs-center">
-              <button *ngIf="selectedTopic.status=='new'" class="btn btn-default" (click)="submitTopicForValidation()">Submit for Validation</button>
-              <button *ngIf="selectedTopic.status=='pending'" class="btn btn-default" (click)="validateTopic()">Validate content</button>
-              <button *ngIf="selectedTopic.status=='pending'" class="btn btn-default" (click)="closeTopic()">Validate content</button>
+              <button *ngIf="selectedTopic.status=='new'" class="btn btn-orange" (click)="submitTopicForValidation()">Submit for Validation</button>
+              <button *ngIf="selectedTopic.status=='pending'" class="btn btn-yellow" (click)="validateTopic()">Validate content</button>
+              <button *ngIf="selectedTopic.status=='open'" class="btn btn-green" (click)="closeTopic()">Close topic</button>
             </div>
 
 

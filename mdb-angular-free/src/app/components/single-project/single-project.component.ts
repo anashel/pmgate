@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProjectServiceService } from '../../model/project/project-service.service';
 import { Topic } from '../../model/topics/topic';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { Criteria } from '../../model/criterias/criteria';
 
 
 
@@ -26,8 +27,7 @@ export class SingleProjectComponent implements OnInit {
   selectedTopic: Topic;
   myTopics: Topic[];
   newTopic: Topic;
-
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers', 'Loafers', 'Moccasins', 'Sneakers'];
+  newCriteria: Criteria; 
 
   listUsers: User[];
 
@@ -38,56 +38,25 @@ export class SingleProjectComponent implements OnInit {
   progressColor = 'dribbble';
 
   constructor(private userDataService: UserDataService, private projectService: ProjectServiceService, private route: ActivatedRoute) {
-
-
     this.myUser = userDataService.getPrincipal();
     this.myProject = new Project();
-
     const projectIdInParam: string = this.route.snapshot.queryParamMap.get('projectid');
     this.myProject = projectService.getProject(+projectIdInParam);
-
-    this.myTopics = this.myProject.topics;
     this.newTopic = new Topic();
+    this.newCriteria = new Criteria(); 
     this.selectedTopic = new Topic();
-
-    //progress: 
-    // let Filt
-    // filteredTopics = this.myTopics.filter((topic: Topic) => topic.status == status && topic.phase == this.selectedPhase);
-
 
     //set up selected section  and phase
     this.myMenuItem = "topics";
     this.selectedPhase = this.myProject.phase;
-    this.listUsers = userDataService.users;
-
-    //progress:
-    //this.value =  this.getTopicProgressValue();
-
+    this.listUsers = userDataService.users;    
+    this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
   }
 
   ngOnInit() {
-
-
-    this.initialize();
-
   }
 
   initialize() {
-    this.myUser = this.userDataService.getPrincipal();
-    this.myProject = new Project();
-
-    const projectIdInParam: string = this.route.snapshot.queryParamMap.get('projectid');
-    this.myProject = this.projectService.getProject(+projectIdInParam);
-
-    this.myTopics = this.myProject.topics;
-    this.newTopic = new Topic();
-    this.selectedTopic = new Topic();
-
-
-    //set up selected section  and phase
-    this.myMenuItem = "topics";
-    this.selectedPhase = this.myProject.phase;
-    this.listUsers = this.userDataService.users;
   }
 
 
@@ -110,8 +79,6 @@ export class SingleProjectComponent implements OnInit {
 
   submitTopicForValidation() {
     this.selectedTopic.status = "pending";
-    console.log(this.myProject);
-
   }
 
   validateTopic() {
@@ -124,77 +91,91 @@ export class SingleProjectComponent implements OnInit {
   }
 
   testButton() {
-    console.log(this.myProject);
+
   }
 
   addTopic() {
-    console.log(this.newTopic);
     let toSaveTopic: Topic = this.newTopic;
     toSaveTopic.phase = this.selectedPhase;
+    toSaveTopic.criterias = [];
     this.myProject.topics.push(toSaveTopic);
-
     this.newTopic = new Topic();
-
-
+    
+    this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
   }
 
   onSelectTopic(topic: Topic) {
     this.selectedTopic = topic;
+    console.log(this.selectedTopic);
+    
   }
-  //menu and phase jnitialization 
+
+  /**
+   * Select a phase in the stepper and setup the topics in that phase
+   * @param phase 
+   */
   selectPhase(phase: number) {
     this.selectedPhase = phase;
+    this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == phase);
   }
+
+  /**
+   * Select the menu item in the summary box (topic, risk, issues)
+   * @param selectedMenu 
+   */
   selectMenu(selectedMenu: string) {
     this.myMenuItem = selectedMenu;
-    console.log("My Menu Item Click: ---");
-
-    console.log(this.myProject);
-    console.log(this.myTopics);
-
   }
 
-
+  /**
+   * Get percentage of progress
+   * Method: Take all closed topics, get all topics, divide first by second. 
+   */
   getTopicProgressValue() {
     let x: number = this.getNumberTopicByStatus("closed");
-
     let y: number = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase).length;
-    console.log("Number of total topics phase 2");
-
-    console.log(y);
     let divided = x / y * 100;
-    console.log("divided: ");
-
-    console.log(divided);
-
-    return divided;
+    return Math.round(divided);
   }
 
   getNumberTopicByStatus(status: String) {
     let filteredTopics: Topic[] = [];
-    //console.log(this.myProject);
-
     filteredTopics = this.myProject.topics.filter((topic: Topic) => topic.status == status && topic.phase == this.selectedPhase);
-    console.log("Filter by status: ");
-
-    console.log(filteredTopics);
-
     return filteredTopics.length;
 
   }
 
   getNumberTopics() {
-
-
     let filteredTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
-
-
     return filteredTopics.length;
-
+  }
+  
+  goToNextPhase(){
+    this.myProject.phase++; 
+    this.selectedPhase++;
   }
 
-  getTopicProgressColor() {
-    return "Accent";
+  goToPreviousPhase(){
+    this.myProject.phase--; 
+    this.selectedPhase--;
+  }
+
+  addCriteria(){
+    let that = this; 
+    console.log(that.selectedTopic.criterias);
+    
+    let toSaveCriteria = this.newCriteria; 
+    this.selectedTopic.criterias.push(toSaveCriteria);
+    this.newCriteria = new Criteria(); 
+  }
+
+  removeCriteria(criteria:Criteria){
+    let toDeleteCriteria = this.selectedTopic.criterias.indexOf(criteria);
+    this.selectedTopic.criterias.splice(toDeleteCriteria, 1);
+  }
+
+  canEditCriterias(){
+    return true; 
   }
 
 }

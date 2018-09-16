@@ -53,7 +53,13 @@
         max-height: 350px; 
         border: 3px solid grey;
         overflow: auto;
+    }
 
+    .listBlockSearch{
+        flex-grow: 1;
+        max-height: 350px; 
+        border: 3px solid grey;
+       
     }
     .example-chip-list {
         width: 100%;

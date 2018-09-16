@@ -22,7 +22,7 @@ import { ProjectpipePipe } from './pipes/projectpipe.pipe';
 import { SingleProjectComponent } from './components/single-project/single-project.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -45,7 +45,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSelectModule
     ,
     RouterModule.forRoot([
       {

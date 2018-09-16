@@ -1,8 +1,12 @@
 import { User } from "../user/user";
 
 export class Criteria {
-    owner: User[];
+    name:String; 
+    owner: User;
     allowedUsers: User[];
+    startdate: Date;
+    enddate: Date; 
+    comment: String; 
 
 
 

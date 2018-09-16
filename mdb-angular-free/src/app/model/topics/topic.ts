@@ -5,8 +5,8 @@ export class Topic {
    
     members: User[];
     allowed: User[];
-    startDate: Date; 
-    endDate: Date; 
+    startdate: Date; 
+    enddate: Date; 
     priority: number; 
     criterias: Criteria[]; 
     status: string; 
@@ -19,5 +19,6 @@ export class Topic {
         Object.assign(this, values);
         this.status = "new"; 
         this.members= [];
+        this.criterias= [];
     }
 }
