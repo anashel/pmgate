@@ -7,7 +7,8 @@ import { ProjectServiceService } from '../../model/project/project-service.servi
 import { Topic } from '../../model/topics/topic';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Criteria } from '../../model/criterias/criteria';
-
+import * as jspdf from 'jspdf';  
+import html2canvas from 'html2canvas';  
 
 
 @Component({
@@ -201,4 +202,32 @@ export class SingleProjectComponent implements OnInit {
     }
   }
 
+  /**
+   * Printing PDF
+   */
+
+
+  public captureScreen()  
+  {  
+    var data = document.getElementById('contentToConvert');  
+    
+    html2canvas(data).then(canvas => {  
+      // Few necessary setting options  
+      var imgWidth = 208;   
+      var pageHeight = 295;    
+      var imgHeight = canvas.height * imgWidth / canvas.width;  
+      var heightLeft = imgHeight;  
+    
+      const contentDataURL = canvas.toDataURL('pdf')  
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
+      var position = 0;  
+    //  pdf.addHTML(contentDataURL, 'pdf', 0, position, imgWidth, imgHeight);
+
+   pdf.addImage(contentDataURL, 'pdf', 0, position, imgWidth, imgHeight)  
+      pdf.save('ProjectReport.pdf'); // Generated PDF   
+    });  
+    
+
+    
+  }  
 }

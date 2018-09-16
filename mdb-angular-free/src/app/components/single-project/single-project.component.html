@@ -1,603 +1,607 @@
-<div *ngIf="myUser != null ;" #editBlock>
+<div id="contentToConvert">
+  <div *ngIf="myUser != null ;" #editBlock>
 
-  <div class="col-md-11 text-center">
-    <h1 class="h1-responsive" style="color: white"> {{myProject.name}} </h1>
+    <div class="col-md-11 text-center">
+      <h1 class="h1-responsive" style="color: white;"> {{myProject.name}}
 
-  </div>
-</div>
-
-<div class="row mt-5">
-
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">
-          <a> Progress</a>
-        </h4>
-        <div class="progress" style="height: 20px">
-          <div class="progress-bar" role="progressbar" style="width: 25%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{myProject.progress}}%</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">
-          <a> Description</a>
-        </h4>
-        <p class="card-text">
-          {{myProject.description}} </p>
-      </div>
+        <i class="fa fa-print white-text" (click)="captureScreen()" aria-hidden="true"></i>
+      </h1>
     </div>
   </div>
 
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">
-          <a> Budget</a>
-        </h4>
-        <div class="progress" style="height: 20px">
-          <div class="progress-bar" role="progressbar" style="width: 40%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{myProject.budget}} €</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <div class="row mt-5">
 
-<!-- Stepper -->
-<div class="row mt-5">
-  <div class="col-md-12">
-    <!-- Steps form -->
-    <div class="card">
-      <div class="card-body mb-10">
-
-        <h2 class="text-center font-weight-bold pt-4 pb-5">
-          <strong>Progression du projet</strong>
-        </h2>
-
-        <!-- Stepper -->
-        <div class="steps-form">
-
-          <div class="steps-row setup-panel">
-
-            <!-- Phase 0 -->
-            <div *ngIf="myProject.phase ==0" class="steps-step" (click)="selectPhase(0)">
-              <a type="button" class="btn btn-yellow btn-circle">0</a>
-              <p>
-                <b>Phase 0</b>
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 0" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase > 0" class="steps-step" (click)="selectPhase(0)">
-              <a type="button" class="btn btn-green btn-circle">0</a>
-              <p>
-                Phase 0
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 0" aria-hidden="true"></i>
-            </div>
-
-            <!-- Phase 1 -->
-
-            <div *ngIf="myProject.phase ==1" class="steps-step" (click)="selectPhase(1)">
-              <a type="button" class="btn btn-yellow btn-circle">1</a>
-              <p>
-                <b>Phase 1</b>
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 1" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase < 1" class="steps-step" (click)="selectPhase(1)">
-              <a type="button" class="btn btn-red btn-circle">1</a>
-              <p>Phase 1</p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 1" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase > 1" class="steps-step" (click)="selectPhase(1)">
-              <a type="button" class="btn btn-green btn-circle">1</a>
-              <p>
-                <b>Phase 1</b>
-              </p>
-              <i class="fa fa-arrow-up  fa-2x" *ngIf="selectedPhase == 1" aria-hidden="true"></i>
-            </div>
-
-
-
-            <!-- Phase 2 -->
-            <div *ngIf="myProject.phase ==2" class="steps-step" (click)="selectPhase(2)">
-              <a type="button" class="btn btn-yellow btn-circle">2</a>
-              <p>
-                <b>Phase 2</b>
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 2" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase > 2" class="steps-step" (click)="selectPhase(2)">
-              <a type="button" class="btn btn-green btn-circle" disabled="disabled">2</a>
-              <p>
-                Phase 2
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 2" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase < 2" class="steps-step" (click)="selectPhase(2)">
-              <a type="button" class="btn btn-red btn-circle" disabled="disabled">2</a>
-              <p>
-                Phase 2
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 2" aria-hidden="true"></i>
-            </div>
-
-            <!-- Phase 3 -->
-            <div *ngIf="myProject.phase ==3" class="steps-step" (click)="selectPhase(3)">
-              <a type="button" class="btn btn-yellow btn-circle">3</a>
-              <p>
-                <b>Phase 3</b>
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 3" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase > 3" class="steps-step" (click)="selectPhase(3)">
-              <a type="button" class="btn btn-green btn-circle" disabled="disabled">3</a>
-              <p>
-                Phase 3
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 3" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase < 3" class="steps-step" (click)="selectPhase(3)">
-              <a type="button" class="btn btn-red btn-circle" disabled="disabled">3</a>
-              <p>
-                Phase 3
-              </p>
-              <i class="fa fa-arrow-up  fa-2x" *ngIf="selectedPhase == 3" aria-hidden="true"></i>
-            </div>
-
-
-            <!-- Phase 4 -->
-            <div *ngIf="myProject.phase ==4" class="steps-step" (click)="selectPhase(4)">
-              <a type="button" class="btn btn-yellow btn-circle">4</a>
-              <p>
-                <b>Phase 4</b>
-              </p>
-              <i class="fa fa-arrow-up fa-2x " *ngIf="selectedPhase == 4" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase > 4" class="steps-step" (click)="selectPhase(4)">
-              <a type="button" class="btn btn-green btn-circle" disabled="disabled">4</a>
-              <p>
-                Phase 4
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 4" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase < 4" class="steps-step" (click)="selectPhase(4)">
-              <a type="button" class="btn btn-red btn-circle">4</a>
-              <p>
-                <b>Phase 4</b>
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 4" aria-hidden="true"></i>
-            </div>
-
-            <!-- Phase 5 -->
-            <div *ngIf="myProject.phase ==5" class="steps-step" (click)="selectPhase(5)">
-              <a type="button" class="btn btn-yellow btn-circle">5</a>
-              <p>
-                <b>Phase 5</b>
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 5" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase > 5" class="steps-step" (click)="selectPhase(5)">
-              <a type="button" class="btn btn-green btn-circle" disabled="disabled">5</a>
-              <p>
-                Phase 5
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 5" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="myProject.phase < 5" class="steps-step" (click)="selectPhase(5)">
-              <a type="button" class="btn btn-red btn-circle" disabled="disabled">5</a>
-              <p>
-                Phase 5
-              </p>
-              <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 5" aria-hidden="true"></i>
-            </div>
-
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">
+            <a> Progress</a>
+          </h4>
+          <div class="progress" style="height: 20px">
+            <div class="progress-bar" role="progressbar" style="width: 25%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{myProject.progress}}%</div>
           </div>
-
-
-
         </div>
       </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">
+            <a> Description</a>
+          </h4>
+          <p class="card-text">
+            {{myProject.description}} </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">
+            <a> Budget</a>
+          </h4>
+          <div class="progress" style="height: 20px">
+            <div class="progress-bar" role="progressbar" style="width: 40%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{myProject.budget}} €</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stepper -->
+  <div class="row mt-5">
+    <div class="col-md-12">
       <!-- Steps form -->
-    </div>
-  </div>
-</div>
+      <div class="card">
+        <div class="card-body mb-10">
 
-<!-- Meny section -->
-<div class="row mt-5">
-  <div class="col-md-4  align-items-center">
-  </div>
-  <div class="col-md-4  align-items-center">
-    <div class="card">
-      <div class="card-body mb-4 text-center">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="row">
-              <button *ngIf="myMenuItem == 'topics';" type="submit" class="btn btn-primary btn-lg" (click)="selectMenu('topics')">Topics</button>
-              <button *ngIf="myMenuItem != 'topics';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('topics')">Topics</button>
-            </div>
-            <div class="row align-items-center">
+          <h2 class="text-center font-weight-bold pt-4 pb-5">
+            <strong>Progression du projet</strong>
+          </h2>
+
+          <!-- Stepper -->
+          <div class="steps-form">
+
+            <div class="steps-row setup-panel">
+
+              <!-- Phase 0 -->
+              <div *ngIf="myProject.phase ==0" class="steps-step" (click)="selectPhase(0)">
+                <a type="button" class="btn btn-yellow btn-circle">0</a>
+                <p>
+                  <b>Phase 0</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 0" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 0" class="steps-step" (click)="selectPhase(0)">
+                <a type="button" class="btn btn-green btn-circle">0</a>
+                <p>
+                  Phase 0
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 0" aria-hidden="true"></i>
+              </div>
+
+              <!-- Phase 1 -->
+
+              <div *ngIf="myProject.phase ==1" class="steps-step" (click)="selectPhase(1)">
+                <a type="button" class="btn btn-yellow btn-circle">1</a>
+                <p>
+                  <b>Phase 1</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 1" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 1" class="steps-step" (click)="selectPhase(1)">
+                <a type="button" class="btn btn-red btn-circle">1</a>
+                <p>Phase 1</p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 1" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 1" class="steps-step" (click)="selectPhase(1)">
+                <a type="button" class="btn btn-green btn-circle">1</a>
+                <p>
+                  <b>Phase 1</b>
+                </p>
+                <i class="fa fa-arrow-up  fa-2x" *ngIf="selectedPhase == 1" aria-hidden="true"></i>
+              </div>
+
+
+
+              <!-- Phase 2 -->
+              <div *ngIf="myProject.phase ==2" class="steps-step" (click)="selectPhase(2)">
+                <a type="button" class="btn btn-yellow btn-circle">2</a>
+                <p>
+                  <b>Phase 2</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 2" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 2" class="steps-step" (click)="selectPhase(2)">
+                <a type="button" class="btn btn-green btn-circle" disabled="disabled">2</a>
+                <p>
+                  Phase 2
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 2" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 2" class="steps-step" (click)="selectPhase(2)">
+                <a type="button" class="btn btn-red btn-circle" disabled="disabled">2</a>
+                <p>
+                  Phase 2
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 2" aria-hidden="true"></i>
+              </div>
+
+              <!-- Phase 3 -->
+              <div *ngIf="myProject.phase ==3" class="steps-step" (click)="selectPhase(3)">
+                <a type="button" class="btn btn-yellow btn-circle">3</a>
+                <p>
+                  <b>Phase 3</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 3" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 3" class="steps-step" (click)="selectPhase(3)">
+                <a type="button" class="btn btn-green btn-circle" disabled="disabled">3</a>
+                <p>
+                  Phase 3
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 3" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 3" class="steps-step" (click)="selectPhase(3)">
+                <a type="button" class="btn btn-red btn-circle" disabled="disabled">3</a>
+                <p>
+                  Phase 3
+                </p>
+                <i class="fa fa-arrow-up  fa-2x" *ngIf="selectedPhase == 3" aria-hidden="true"></i>
+              </div>
+
+
+              <!-- Phase 4 -->
+              <div *ngIf="myProject.phase ==4" class="steps-step" (click)="selectPhase(4)">
+                <a type="button" class="btn btn-yellow btn-circle">4</a>
+                <p>
+                  <b>Phase 4</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x " *ngIf="selectedPhase == 4" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 4" class="steps-step" (click)="selectPhase(4)">
+                <a type="button" class="btn btn-green btn-circle" disabled="disabled">4</a>
+                <p>
+                  Phase 4
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 4" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 4" class="steps-step" (click)="selectPhase(4)">
+                <a type="button" class="btn btn-red btn-circle">4</a>
+                <p>
+                  <b>Phase 4</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 4" aria-hidden="true"></i>
+              </div>
+
+              <!-- Phase 5 -->
+              <div *ngIf="myProject.phase ==5" class="steps-step" (click)="selectPhase(5)">
+                <a type="button" class="btn btn-yellow btn-circle">5</a>
+                <p>
+                  <b>Phase 5</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 5" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 5" class="steps-step" (click)="selectPhase(5)">
+                <a type="button" class="btn btn-green btn-circle" disabled="disabled">5</a>
+                <p>
+                  Phase 5
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 5" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 5" class="steps-step" (click)="selectPhase(5)">
+                <a type="button" class="btn btn-red btn-circle" disabled="disabled">5</a>
+                <p>
+                  Phase 5
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 5" aria-hidden="true"></i>
+              </div>
 
             </div>
-          </div>
-          <div class="col-md-4">
-            <button *ngIf="myMenuItem == 'issues';" type="submit" class="btn btn-primary btn-lg" (click)="selectMenu('issues')">Issues</button>
-            <button *ngIf="myMenuItem != 'issues';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('issues')">Issues</button>
-          </div>
-          <div class="col-md-4">
-            <button *ngIf="myMenuItem == 'risks';" type="submit" class="btn btn-primary btn-lg" (click)="selectMenu('risks')">Risks</button>
-            <button *ngIf="myMenuItem != 'risks';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('risks')">Risks</button>
+
+
+
           </div>
         </div>
-        <div *ngIf="myMenuItem == 'topics';">
-          <br/>
-          <div class="row">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>
-                    <i class="fa fa-circle blue-text" aria-hidden="true"></i>
-                  </td>
-                  <td>Total topics:</td>
-                  <td>{{getNumberTopics()}}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <i class="fa fa-circle red-text" aria-hidden="true"></i>
-                  </td>
-                  <td>New:</td>
-                  <td>{{getNumberTopicByStatus("new")}}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <i class="fa fa-circle orange-text" aria-hidden="true"></i>
-                  </td>
-                  <td>Pending:</td>
-                  <td>{{getNumberTopicByStatus("pending")}}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <i class="fa fa-circle yellow-text" aria-hidden="true"></i>
-                  </td>
-                  <td>Open:</td>
-                  <td>{{getNumberTopicByStatus("open")}}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <i class="fa fa-circle green-text" aria-hidden="true"></i>
-                  </td>
-                  <td>Closed:</td>
-                  <td>{{getNumberTopicByStatus("closed")}}</td>
-                </tr>
-              </tbody>
-
-            </table>
-
-          </div>
-          <br/>
-          <div class="row">
-
-            <div class="col-md-4">
-              <h5>Completion:</h5>
-            </div>
-            <div class="col-md-8">
-              <mat-progress-bar [value]="value" [color]="progressColor"></mat-progress-bar>
-            </div>
-          </div>
-
-          <div class="row">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>
-                    <button *ngIf="selectedPhase == myProject.phase" type="button" class="btn btn-blue-grey btn-rounded btn-md my-0" (click)="goToPreviousPhase()">
-                      <<</button>
-                  </td>
-                  <td>
-                    Status: {{value}}%
-                  </td>
-                  <td>
-                    <button  *ngIf="selectedPhase == myProject.phase" type="button" class="btn btn-green btn-rounded btn-md my-0" (click)="goToNextPhase()">>></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <!-- Steps form -->
       </div>
     </div>
   </div>
-  <div class="col-md-4  align-items-center">
-  </div>
-</div>
 
-<br/>
-<br/>
-
-<!-- Topics -->
-<div *ngIf="myMenuItem == 'topics' ;">
-  <h2 class="text-center" style="color:white">
-    Selected phase: {{selectedPhase}}
-  </h2>
-  <div class="row mt-5 ">
-
-    <div class="col-md-2 offset-md-1 left-column mb-1">
-
-      <ul class="list-group">
-        <li *ngFor="let topic of myTopics" class="list-group-item d-flex justify-content-between align-items-center" (click)="onSelectTopic(topic)">
-          {{topic.name}}
-
-          <span *ngIf="topic.status == 'new'" class="badge red">{{topic.status}}</span>
-          <span *ngIf="topic.status == 'pending'" class="badge orange">{{topic.status}}</span>
-          <span *ngIf="topic.status == 'open'" class="badge yellow">{{topic.status}}</span>
-          <span *ngIf="topic.status == 'closed'" class="badge green">{{topic.status}}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <form>
-            <input mdbActive type="text" placeholder="Add new topic" id="form1" class="form-control" [(ngModel)]="newTopic.name" (keyup.enter)="addTopic()"
-              name="addCat">
-          </form>
-          <span class="badge primary-color badge-pill">
-            <a class="prefix">
-              <i class="fa fa-plus" aria-hidden="true" (click)="addTopic()"></i>
-            </a>
-          </span>
-        </li>
-      </ul>
+  <!-- Meny section -->
+  <div class="row mt-5">
+    <div class="col-md-4  align-items-center">
     </div>
-
-    <div class="col-md-8 list mb-0">
+    <div class="col-md-4  align-items-center">
       <div class="card">
         <div class="card-body mb-4 text-center">
-          <div *ngIf="selectedTopic != null">
-
-
-
-            <div class="text-xs-center">
-              <h3>
-                <i class="fa fa-heartbeat"></i> {{selectedTopic.name}}
-
-                <span *ngIf="selectedTopic.status == 'new'" class="badge red">{{selectedTopic.status}}</span>
-                <span *ngIf="selectedTopic.status == 'pending'" class="badge orange">{{selectedTopic.status}}</span>
-                <span *ngIf="selectedTopic.status == 'open'" class="badge yellow">{{selectedTopic.status}}</span>
-                <span *ngIf="selectedTopic.status == 'closed'" class="badge green">{{selectedTopic.status}}</span>
-              </h3>
-              <hr class="m-t-2 m-b-2">
-            </div>
-            <div class="text-xs-center">
-              <p>Please fill the information about the Topic.</p>
-            </div>
-
-
-
-
-            <div class="text-xs-center">
-              <div class="md-form">
-
-                <h4>Name:</h4>
-
-                <input type="text" class="form-control" name="pwd" id="inputNamePRoject" placeholder="Name of topic" [(ngModel)]="selectedTopic.name">
-
-              </div>
-
-            </div>
-
-
-            <div class="text-xs-center">
-              <h4>Criteria:</h4>
-            </div>
-            <!--Table-->
-            <table class="table table-striped">
-
-              <!--Table head-->
-              <thead>
-                <tr>
-
-                  <th>Name</th>
-                  <th>Start</th>
-                  <th>End</th>
-                  <th>Owner</th>
-                  <th>Comment</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <!--Table head-->
-
-              <!--Table body-->
-              <tbody>
-                <!-- 1st project -->
-                <tr *ngFor="let criteria of selectedTopic.criterias">
-                  <td>
-                    {{criteria.name}}
-                  </td>
-                  <td>
-                    {{criteria.startdate}}
-                  </td>
-                  <td>
-                    {{criteria.enddate}}
-                  </td>
-                  <td>
-                    {{criteria.owner.username}}
-                  </td>
-                  <td>
-                    {{criteria.comment}}
-                  </td>
-                  <td>
-                    <i *ngIf="canEditCriterias()" class="fa fa-close red-text" aria-hidden="true" (click)="removeCriteria(criteria)"></i>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <input type="text" class="form-control" name="pwd" id="inputNamePRoject" placeholder="Name of criteria" [(ngModel)]="newCriteria.name">
-                  </td>
-                  <td>
-                    <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="newCriteria.startdate">
-                  </td>
-                  <td>
-                    <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="newCriteria.enddate">
-                  </td>
-                  <td>
-                    <mat-form-field>
-                      <mat-select placeholder="Select owner" [(ngModel)]="newCriteria.owner">
-                        <mat-option *ngFor="let member of selectedTopic.members" [value]="member">
-                          {{member.username}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </td>
-                  <td>
-                    <mat-form-field class="example-full-width">
-                      <textarea matInput placeholder="Leave a comment" [(ngModel)]="newCriteria.comment">
-                          </textarea>
-                    </mat-form-field>
-                  </td>
-                  <td align="center">
-                    <button *ngIf="isNewCriteriaComplete() == true" type="button" (click)="addCriteria()" class="btn btn-primary btn-rounded btn-sm my-0">Add</button>
-                  </td>
-                </tr>
-
-
-              </tbody>
-              <!--Table body-->
-            </table>
-            <!--Table-->
-
-
-            <div *ngIf="selectedTopic.status !='new'" class="text-xs-center">
-              <div class="md-form">
-
-                <h4>Progress:</h4>
-                <div class="row">
-                  <div class="col-md-2">{{selectedTopic.startdate}}</div>
-                  <div class="col-md-8">
-                    <mat-progress-bar value="80" [color]="progressColor"></mat-progress-bar>
-                  </div>
-                  <div class="col-md-2">{{selectedTopic.enddate}}</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row px-4 mt-3" class="text-xs-center">
-              <div class="md-form">
-
-                <h4>Member(s):</h4>
-                <mat-chip-list>
-
-                  <mat-chip color="primary" *ngFor="let member of selectedTopic.members" class="greyColor" selected>{{member.username}}
-                    <mat-icon matChipRemove (click)="removeMember(member)">cancel</mat-icon>
-                  </mat-chip>
-
-                </mat-chip-list>
-
-
-
-                <br/>
-
-                <div class="listBlockSearch">
-                  <i class="fa fa-search prefix fa-lg"></i>
-                  <input type="search" [(ngModel)]="searchText" placeholder="Search text" />
-                </div>
-                <br/>
-                <br/>
-                <div class="listBlock">
-                  <ul class="list-group ">
-                    <li *ngFor="let user of listUsers | filter: searchText" class="list-group-item d-flex justify-content-between align-items-center">
-                      {{user.username}}
-                      <i *ngIf="isSelected(user)==false" class="fa fa-close red-text" aria-hidden="true" (click)="removeMember(user)"></i>
-                      <i *ngIf="isSelected(user)" class="fa fa-plus blue-text" aria-hidden="true" (click)="addMember(user)"></i>
-
-
-                    </li>
-                  </ul>
-                </div>
-
-
-              </div>
-
-            </div>
-
-            <div>
-              <div class="row" class="text-xs-center">
-                <h4> Dates:</h4>
-              </div>
+          <div class="row">
+            <div class="col-md-4">
               <div class="row">
-                <div class="col-md-6">
-                  <p class="h5 mb-4">Start date</p>
-                  <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="selectedTopic.startdate">
-                </div>
-                <div class="col-md-6">
-                  <p class="h5 mb-4">Start date</p>
-                  <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="selectedTopic.enddate"> 
-                </div>
+                <button *ngIf="myMenuItem == 'topics';" type="submit" class="btn btn-primary btn-lg" (click)="selectMenu('topics')">Topics</button>
+                <button *ngIf="myMenuItem != 'topics';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('topics')">Topics</button>
               </div>
+              <div class="row align-items-center">
 
-              <!-- Start date -->
-
+              </div>
             </div>
-
-
-
-
-
-            <div class="text-xs-center">
-              <h4>Priority:</h4>
-
-              <form>
-
-                <fieldset class="form-group">
-                  <input name="priority" type="radio" id="radio1" checked="checked">
-                  <label for="radio1">Major</label>
-                </fieldset>
-
-                <fieldset class="form-group">
-                  <input name="priority" type="radio" id="radio2">
-                  <label for="radio2">Minor</label>
-                </fieldset>
-
-
-
-              </form>
-
-
+            <div class="col-md-4">
+              <button *ngIf="myMenuItem == 'issues';" type="submit" class="btn btn-primary btn-lg" (click)="selectMenu('issues')">Issues</button>
+              <button *ngIf="myMenuItem != 'issues';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('issues')">Issues</button>
             </div>
-            <br>
-
-
-
-
-
-
-
-            <!-- Submit options-->
-
-            <div class="text-xs-center">
-              <button *ngIf="selectedTopic.status=='new'" class="btn btn-orange" (click)="submitTopicForValidation()">Submit for Validation</button>
-              <button *ngIf="selectedTopic.status=='pending'" class="btn btn-yellow" (click)="validateTopic()">Validate content</button>
-              <button *ngIf="selectedTopic.status=='open'" class="btn btn-green" (click)="closeTopic()">Close topic</button>
+            <div class="col-md-4">
+              <button *ngIf="myMenuItem == 'risks';" type="submit" class="btn btn-primary btn-lg" (click)="selectMenu('risks')">Risks</button>
+              <button *ngIf="myMenuItem != 'risks';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('risks')">Risks</button>
             </div>
-
-
-
-
-
           </div>
+          <div *ngIf="myMenuItem == 'topics';">
+            <br/>
+            <div class="row">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <i class="fa fa-circle blue-text" aria-hidden="true"></i>
+                    </td>
+                    <td>Total topics:</td>
+                    <td>{{getNumberTopics()}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-circle red-text" aria-hidden="true"></i>
+                    </td>
+                    <td>New:</td>
+                    <td>{{getNumberTopicByStatus("new")}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-circle orange-text" aria-hidden="true"></i>
+                    </td>
+                    <td>Pending:</td>
+                    <td>{{getNumberTopicByStatus("pending")}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-circle yellow-text" aria-hidden="true"></i>
+                    </td>
+                    <td>Open:</td>
+                    <td>{{getNumberTopicByStatus("open")}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i class="fa fa-circle green-text" aria-hidden="true"></i>
+                    </td>
+                    <td>Closed:</td>
+                    <td>{{getNumberTopicByStatus("closed")}}</td>
+                  </tr>
+                </tbody>
 
-          <div *ngIf="selectedTopic == null">
-            Please select a topic.
+              </table>
 
+            </div>
+            <br/>
+            <div class="row">
 
+              <div class="col-md-4">
+                <h5>Completion:</h5>
+              </div>
+              <div class="col-md-8">
+                <mat-progress-bar [value]="value" [color]="progressColor"></mat-progress-bar>
+              </div>
+            </div>
+
+            <div class="row">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <button *ngIf="selectedPhase == myProject.phase" type="button" class="btn btn-blue-grey btn-rounded btn-md my-0" (click)="goToPreviousPhase()">
+                        <<</button>
+                    </td>
+                    <td>
+                      Status: {{value}}%
+                    </td>
+                    <td>
+                      <button *ngIf="selectedPhase == myProject.phase" type="button" class="btn btn-green btn-rounded btn-md my-0" (click)="goToNextPhase()">>></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-md-4  align-items-center">
+    </div>
   </div>
 
-
+  <br/>
+  <br/>
 </div>
+  <!-- Topics -->
+  <div *ngIf="myMenuItem == 'topics' ;">
+    <h2 class="text-center" style="color:white">
+      Selected phase: {{selectedPhase}}
+    </h2>
+    <div class="row mt-5 ">
 
-<br/>
-<br/>
+      <div class="col-md-2 offset-md-1 left-column mb-1">
+
+        <ul class="list-group">
+          <li *ngFor="let topic of myTopics" class="list-group-item d-flex justify-content-between align-items-center" (click)="onSelectTopic(topic)">
+            {{topic.name}}
+
+            <span *ngIf="topic.status == 'new'" class="badge red">{{topic.status}}</span>
+            <span *ngIf="topic.status == 'pending'" class="badge orange">{{topic.status}}</span>
+            <span *ngIf="topic.status == 'open'" class="badge yellow">{{topic.status}}</span>
+            <span *ngIf="topic.status == 'closed'" class="badge green">{{topic.status}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <form>
+              <input mdbActive type="text" placeholder="Add new topic" id="form1" class="form-control" [(ngModel)]="newTopic.name" (keyup.enter)="addTopic()"
+                name="addCat">
+            </form>
+            <span class="badge primary-color badge-pill">
+              <a class="prefix">
+                <i class="fa fa-plus" aria-hidden="true" (click)="addTopic()"></i>
+              </a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-8 list mb-0">
+        <div class="card">
+          <div class="card-body mb-4 text-center">
+            <div *ngIf="selectedTopic != null">
+
+
+
+              <div class="text-xs-center">
+                <h3>
+                  <i class="fa fa-heartbeat"></i> {{selectedTopic.name}}
+
+                  <span *ngIf="selectedTopic.status == 'new'" class="badge red">{{selectedTopic.status}}</span>
+                  <span *ngIf="selectedTopic.status == 'pending'" class="badge orange">{{selectedTopic.status}}</span>
+                  <span *ngIf="selectedTopic.status == 'open'" class="badge yellow">{{selectedTopic.status}}</span>
+                  <span *ngIf="selectedTopic.status == 'closed'" class="badge green">{{selectedTopic.status}}</span>
+                </h3>
+                <hr class="m-t-2 m-b-2">
+              </div>
+              <div class="text-xs-center">
+                <p>Please fill the information about the Topic.</p>
+              </div>
+
+
+
+
+              <div class="text-xs-center">
+                <div class="md-form">
+
+                  <h4>Name:</h4>
+
+                  <input type="text" class="form-control" name="pwd" id="inputNamePRoject" placeholder="Name of topic" [(ngModel)]="selectedTopic.name">
+
+                </div>
+
+              </div>
+
+
+              <div class="text-xs-center">
+                <h4>Criteria:</h4>
+              </div>
+              <!--Table-->
+              <table class="table table-striped">
+
+                <!--Table head-->
+                <thead>
+                  <tr>
+
+                    <th>Name</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Owner</th>
+                    <th>Comment</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <!--Table head-->
+
+                <!--Table body-->
+                <tbody>
+                  <!-- 1st project -->
+                  <tr *ngFor="let criteria of selectedTopic.criterias">
+                    <td>
+                      {{criteria.name}}
+                    </td>
+                    <td>
+                      {{criteria.startdate}}
+                    </td>
+                    <td>
+                      {{criteria.enddate}}
+                    </td>
+                    <td>
+                      {{criteria.owner.username}}
+                    </td>
+                    <td>
+                      {{criteria.comment}}
+                    </td>
+                    <td>
+                      <i *ngIf="canEditCriterias()" class="fa fa-close red-text" aria-hidden="true" (click)="removeCriteria(criteria)"></i>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <input type="text" class="form-control" name="pwd" id="inputNamePRoject" placeholder="Name of criteria" [(ngModel)]="newCriteria.name">
+                    </td>
+                    <td>
+                      <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="newCriteria.startdate">
+                    </td>
+                    <td>
+                      <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="newCriteria.enddate">
+                    </td>
+                    <td>
+                      <mat-form-field>
+                        <mat-select placeholder="Select owner" [(ngModel)]="newCriteria.owner">
+                          <mat-option *ngFor="let member of selectedTopic.members" [value]="member">
+                            {{member.username}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <textarea matInput placeholder="Leave a comment" [(ngModel)]="newCriteria.comment">
+                          </textarea>
+                      </mat-form-field>
+                    </td>
+                    <td align="center">
+                      <button *ngIf="isNewCriteriaComplete() == true" type="button" (click)="addCriteria()" class="btn btn-primary btn-rounded btn-sm my-0">Add</button>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+                <!--Table body-->
+              </table>
+              <!--Table-->
+
+
+              <div *ngIf="selectedTopic.status !='new'" class="text-xs-center">
+                <div class="md-form">
+
+                  <h4>Progress:</h4>
+                  <div class="row">
+                    <div class="col-md-2">{{selectedTopic.startdate}}</div>
+                    <div class="col-md-8">
+                      <mat-progress-bar value="80" [color]="progressColor"></mat-progress-bar>
+                    </div>
+                    <div class="col-md-2">{{selectedTopic.enddate}}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row px-4 mt-3" class="text-xs-center">
+                <div class="md-form">
+
+                  <h4>Member(s):</h4>
+                  <mat-chip-list>
+
+                    <mat-chip color="primary" *ngFor="let member of selectedTopic.members" class="greyColor" selected>{{member.username}}
+                      <mat-icon matChipRemove (click)="removeMember(member)">cancel</mat-icon>
+                    </mat-chip>
+
+                  </mat-chip-list>
+
+
+
+                  <br/>
+
+                  <div class="listBlockSearch">
+                    <i class="fa fa-search prefix fa-lg"></i>
+                    <input type="search" [(ngModel)]="searchText" placeholder="Search text" />
+                  </div>
+                  <br/>
+                  <br/>
+                  <div class="listBlock">
+                    <ul class="list-group ">
+                      <li *ngFor="let user of listUsers | filter: searchText" class="list-group-item d-flex justify-content-between align-items-center">
+                        {{user.username}}
+                        <i *ngIf="isSelected(user)==false" class="fa fa-close red-text" aria-hidden="true" (click)="removeMember(user)"></i>
+                        <i *ngIf="isSelected(user)" class="fa fa-plus blue-text" aria-hidden="true" (click)="addMember(user)"></i>
+
+
+                      </li>
+                    </ul>
+                  </div>
+
+
+                </div>
+
+              </div>
+
+              <div>
+                <div class="row" class="text-xs-center">
+                  <h4> Dates:</h4>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="h5 mb-4">Start date</p>
+                    <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="selectedTopic.startdate">
+                  </div>
+                  <div class="col-md-6">
+                    <p class="h5 mb-4">Start date</p>
+                    <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="selectedTopic.enddate">
+                  </div>
+                </div>
+
+                <!-- Start date -->
+
+              </div>
+
+
+
+
+
+              <div class="text-xs-center">
+                <h4>Priority:</h4>
+
+                <form>
+
+                  <fieldset class="form-group">
+                    <input name="priority" type="radio" id="radio1" checked="checked">
+                    <label for="radio1">Major</label>
+                  </fieldset>
+
+                  <fieldset class="form-group">
+                    <input name="priority" type="radio" id="radio2">
+                    <label for="radio2">Minor</label>
+                  </fieldset>
+
+
+
+                </form>
+
+
+              </div>
+              <br>
+
+
+
+
+
+
+
+              <!-- Submit options-->
+
+              <div class="text-xs-center">
+                <button *ngIf="selectedTopic.status=='new'" class="btn btn-orange" (click)="submitTopicForValidation()">Submit for Validation</button>
+                <button *ngIf="selectedTopic.status=='pending'" class="btn btn-yellow" (click)="validateTopic()">Validate content</button>
+                <button *ngIf="selectedTopic.status=='open'" class="btn btn-green" (click)="closeTopic()">Close topic</button>
+              </div>
+
+
+
+
+
+            </div>
+
+            <div *ngIf="selectedTopic == null">
+              Please select a topic.
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <br/>
+  <br/>
+
