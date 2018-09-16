@@ -10,6 +10,7 @@ export class Topic {
     priority: number; 
     criterias: Criteria[]; 
     status: string; 
+    phase: number; 
 
 
 

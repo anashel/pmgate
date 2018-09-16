@@ -21,7 +21,7 @@ import { UserComponent } from './components/user/user.component';
 import { ProjectpipePipe } from './pipes/projectpipe.pipe';
 import { SingleProjectComponent } from './components/single-project/single-project.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 
@@ -44,7 +44,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressBarModule
     ,
     RouterModule.forRoot([
       {

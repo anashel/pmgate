@@ -232,6 +232,47 @@
             <button *ngIf="myMenuItem != 'risks';" type="submit" class="btn btn-blue-grey btn-lg" (click)="selectMenu('risks')">Risks</button>
           </div>
         </div>
+        <div *ngIf="myMenuItem == 'topics';">
+          <br/>
+          <div class="row">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Total topics:</td>
+                  <td>{{getNumberTopics()}}</td>
+                </tr>
+                <tr>
+                  <td>New:</td>
+                  <td>{{getNumberTopicByStatus("new")}}</td>
+                </tr>
+                <tr>
+                  <td>Pending:</td>
+                  <td>{{getNumberTopicByStatus("pending")}}</td>
+                </tr>
+                <tr>
+                  <td>Open:</td>
+                  <td>{{getNumberTopicByStatus("open")}}</td>
+                </tr>
+                <tr>
+                    <td>Closed:</td>
+                    <td>{{getNumberTopicByStatus("closed")}}</td>
+                  </tr>
+              </tbody>
+
+            </table>
+
+          </div>
+          <br/>
+          <div class="row">
+       
+            <div class="col-md-4">
+              <h4>Progress:</h4>
+            </div>
+            <div class="col-md-8">
+              <mat-progress-bar [value]="value" [color]="progressColor"></mat-progress-bar>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -475,7 +516,7 @@
                   <label for="radio2">Minor</label>
                 </fieldset>
 
-             
+
 
               </form>
 
@@ -505,6 +546,7 @@
 
           <div *ngIf="selectedTopic.name == null">
             Please select a topic.
+
 
           </div>
         </div>

@@ -50,7 +50,7 @@ export class UserDataService {
     newUser = { "id": 5, "username": "admin", "password": "admin", "roleUser": "Admin", "validated": false, "email": "Admin@gmail.com" };
     this.users.push(newUser);*/
 
-    this.users =   require('../../../assets/data/users.json'); 
+    this.users =  require('../../../assets/data/users.json'); 
   }
 
   getPrincipal() {

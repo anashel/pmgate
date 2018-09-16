@@ -18,27 +18,32 @@
       {
         "status": "new",
         "members": [],
-        "name": "First Action"
+        "name": "First Action", 
+        "phase": 2
       },
       {
         "status": "pending",
         "members": [],
-        "name": "Second action"
+        "name": "Second action", 
+        "phase": 2
       },
       {
         "status": "open",
         "members": [],
-        "name": "Second action"
+        "name": "Second action", 
+        "phase": 2
       },
       {
         "status": "closed",
         "members": [],
-        "name": "Second action"
+        "name": "Second action", 
+        "phase": 2
       },
       {
         "status": "closed",
         "members": [],
-        "name": "Second action"
+        "name": "Second action", 
+        "phase": 2
       }
     ],
     "loges": [],
