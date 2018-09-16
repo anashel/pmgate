@@ -27,7 +27,7 @@ export class SingleProjectComponent implements OnInit {
   selectedTopic: Topic;
   myTopics: Topic[];
   newTopic: Topic;
-  newCriteria: Criteria; 
+  newCriteria: Criteria;
 
   listUsers: User[];
 
@@ -43,13 +43,13 @@ export class SingleProjectComponent implements OnInit {
     const projectIdInParam: string = this.route.snapshot.queryParamMap.get('projectid');
     this.myProject = projectService.getProject(+projectIdInParam);
     this.newTopic = new Topic();
-    this.newCriteria = new Criteria(); 
+    this.newCriteria = new Criteria();
     this.selectedTopic = new Topic();
 
     //set up selected section  and phase
     this.myMenuItem = "topics";
     this.selectedPhase = this.myProject.phase;
-    this.listUsers = userDataService.users;    
+    this.listUsers = userDataService.users;
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
   }
 
@@ -100,14 +100,14 @@ export class SingleProjectComponent implements OnInit {
     toSaveTopic.criterias = [];
     this.myProject.topics.push(toSaveTopic);
     this.newTopic = new Topic();
-    
+
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
   }
 
   onSelectTopic(topic: Topic) {
     this.selectedTopic = topic;
     console.log(this.selectedTopic);
-    
+
   }
 
   /**
@@ -149,33 +149,51 @@ export class SingleProjectComponent implements OnInit {
     let filteredTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
     return filteredTopics.length;
   }
-  
-  goToNextPhase(){
-    this.myProject.phase++; 
+
+  goToNextPhase() {
+    this.myProject.phase++;
     this.selectedPhase++;
+    this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
   }
 
-  goToPreviousPhase(){
-    this.myProject.phase--; 
+  goToPreviousPhase() {
+    this.myProject.phase--;
     this.selectedPhase--;
+    this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
   }
 
-  addCriteria(){
-    let that = this; 
+  addCriteria() {
+    let that = this;
     console.log(that.selectedTopic.criterias);
-    
-    let toSaveCriteria = this.newCriteria; 
+
+    let toSaveCriteria = this.newCriteria;
     this.selectedTopic.criterias.push(toSaveCriteria);
-    this.newCriteria = new Criteria(); 
+    this.newCriteria = new Criteria();
   }
 
-  removeCriteria(criteria:Criteria){
+  removeCriteria(criteria: Criteria) {
     let toDeleteCriteria = this.selectedTopic.criterias.indexOf(criteria);
     this.selectedTopic.criterias.splice(toDeleteCriteria, 1);
   }
 
-  canEditCriterias(){
-    return true; 
+  /**
+   * Validation rules for criteria
+   */
+
+  canEditCriterias() {
+    return true;
+  }
+
+  isNewCriteriaComplete() {
+    let c = this.newCriteria; 
+    if (c.name != null && c.owner != null && c.startdate != null && c.enddate != null)
+    {
+      return true; 
+    }
+    else
+    {
+      return false; 
+    }
   }
 
 }

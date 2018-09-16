@@ -1,9 +1,92 @@
 <br/>
+
+
+
 <div align="center" style="color:white">
-  <h3 center >My Projects </h3>
- 
+  <h3 center>My Projects </h3>
+
 </div>
 <br/>
+<br/>
+
+<div class="row">
+  <!-- Progress bars-->
+
+  <div class="col-md-2"></div>
+  <div class="col-md-8" style="color:white">
+
+    <div class="row">
+      <div class="col-md-2">Gate 0: </div>
+      <div class="col-md-8">
+        <mat-progress-bar [value]="getRelativeNumberProjectByPhase(0)" color="warn"></mat-progress-bar>
+      </div>
+      <div class="col-md-2"> {{getNumberProjectByPhase(0)}}</div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-2">Gate 1: </div>
+      <div class="col-md-8">
+        <mat-progress-bar [value]="getRelativeNumberProjectByPhase(1)" color="warn"></mat-progress-bar>
+      </div>
+      <div class="col-md-2"> {{getNumberProjectByPhase(1)}}</div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-2">Gate 2: </div>
+      <div class="col-md-8">
+        <mat-progress-bar [value]="getRelativeNumberProjectByPhase(2)" color="warn"></mat-progress-bar>
+      </div>
+      <div class="col-md-2"> {{getNumberProjectByPhase(2)}}</div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-2">Gate 3: </div>
+      <div class="col-md-8">
+        <mat-progress-bar [value]="getRelativeNumberProjectByPhase(3)" color="warn"></mat-progress-bar>
+      </div>
+      <div class="col-md-2"> {{getNumberProjectByPhase(3)}}</div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-2">Gate 4: </div>
+      <div class="col-md-8">
+        <mat-progress-bar [value]="getRelativeNumberProjectByPhase(4)" color="warn"></mat-progress-bar>
+      </div>
+      <div class="col-md-2"> {{getNumberProjectByPhase(4)}}</div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-2">Gate 5: </div>
+      <div class="col-md-8">
+        <mat-progress-bar [value]="getRelativeNumberProjectByPhase(5)" color="warn"></mat-progress-bar>
+      </div>
+      <div class="col-md-2"> {{getNumberProjectByPhase(5)}}</div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-2">Gate 6: </div>
+      <div class="col-md-8">
+        <mat-progress-bar [value]="getRelativeNumberProjectByPhase(6)" color="warn"></mat-progress-bar>
+      </div>
+      <div class="col-md-2"> {{getNumberProjectByPhase(6)}}</div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-2">Gate 7: </div>
+      <div class="col-md-8">
+        <mat-progress-bar [value]="getRelativeNumberProjectByPhase(7)" color="warn"></mat-progress-bar>
+      </div>
+      <div class="col-md-2"> {{getNumberProjectByPhase(7)}}</div>
+    </div>
+
+
+
+
+
+  </div>
+  <div class="col-md-2"></div>
+
+</div>
 <br/>
 <div class="card">
   <div class="card-body">
@@ -64,7 +147,7 @@
             </div>
           </td>
           <td align="center">
-            <button type="button" (click)="openProject(project.id)"  class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
+            <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
           </td>
         </tr>
 

@@ -456,7 +456,7 @@
                     </mat-form-field>
                   </td>
                   <td align="center">
-                    <button type="button" (click)="addCriteria()" class="btn btn-primary btn-rounded btn-sm my-0">Add</button>
+                    <button *ngIf="isNewCriteriaComplete() == true" type="button" (click)="addCriteria()" class="btn btn-primary btn-rounded btn-sm my-0">Add</button>
                   </td>
                 </tr>
 

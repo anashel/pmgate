@@ -40,9 +40,18 @@ export class ProjectsComponent implements OnInit {
     console.log(id);
     this.projectService.getJSON(); 
     this.router.navigateByUrl('/singleproject?projectid=' + id);
-
   }
 
+  getNumberProjectByPhase(phase:number){
+    let filteredProjects = this.myProjects.filter((project:Project) => project.phase == phase);
+    return filteredProjects.length; 
+  }
+
+  getRelativeNumberProjectByPhase(phase:number){
+    let totalprojects = this.myProjects.length;
+    let filteredProjects = this.myProjects.filter((project:Project) => project.phase == phase);
+    return filteredProjects.length / totalprojects * 100;  
+  }
 
 
 }
