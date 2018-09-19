@@ -15,7 +15,7 @@
       <button type="submit" class="btn btn-secondary btn-sm darkOrange" (click)="logoutUser()">Logout</button>
       <!--button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-edit" href="#loginBlock">Edit</button-->
       <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="projects" href="#loginBlock">Projects</button>
-      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="test"
+      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="home"
         href="#loginBlock">New project</button>
       <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="users"
         href="#loginBlock">Users</button>

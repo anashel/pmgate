@@ -1,5 +1,5 @@
 .list {
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 10px solid rgba(0, 0, 0, 0.125);
     margin-left: 15px;
     margin-right: 15px;
 }
@@ -31,3 +31,48 @@
     padding-right: 16px;
   }
   
+
+  .btn-circle {
+    height: 100%;
+    width: 60px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 15px;
+    line-height: 1.428571429;
+    border-radius: 50%;
+    margin-top: 0; }
+
+    .top-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 28px;
+      width: 28px;
+      border-top: solid 2px #fff;
+      border-left: solid 2px #fff;
+  }
+  
+  .cross-a, .cross-b {
+      position:absolute;
+      width:0;
+      height:0;
+  }
+  
+  .cross-a {
+      top:  -2px;
+      left: -2px;
+      border-top:   28px solid transparent;
+      border-right: 28px solid #000;
+  }
+  
+  .cross-b {
+      top:  0px;
+      left: 0px;
+      border-top:   26px solid transparent;
+      border-right: 26px solid #FFFFFF;
+  }
+
+
+.example-chip-list {
+  width: 100%;
+}

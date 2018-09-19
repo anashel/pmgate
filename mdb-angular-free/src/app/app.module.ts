@@ -9,9 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { TestComponent } from './components/test/test.component';
 import { RouterModule } from '@angular/router';
 import { EditComponent } from './components/edit/edit.component'; 
-import { MessageComponent } from './components/messages/messages.component';
-import { OrderComponent } from './components/orders/orders.component';
-import { MatButtonModule, MatIconModule,MatExpansionModule, MatListModule, MatChipsModule, MatFormFieldModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+
+import { MatAutocompleteModule, MatButtonModule, MatIconModule,MatExpansionModule, MatListModule, MatChipsModule, MatFormFieldModule, MatNativeDateModule, MatInputModule } from '@angular/material';
 import { ProjectsComponent } from './components/projects/projects.component';
 import {MatTableModule} from '@angular/material/table';
 import { TablecomponentsComponent } from './components/tablecomponents/tablecomponents.component';
@@ -25,11 +24,14 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatSelectModule} from '@angular/material/select';
 
 
+
+
 @NgModule({
   declarations: [
-    AppComponent, TestComponent, HomeComponent, EditComponent, MessageComponent, OrderComponent, ProjectsComponent, TablecomponentsComponent, FilterPipe, UserComponent, ProjectpipePipe, SingleProjectComponent,
+    AppComponent, TestComponent, HomeComponent, EditComponent, ProjectsComponent, TablecomponentsComponent, FilterPipe, UserComponent, ProjectpipePipe, SingleProjectComponent,
   ],
   imports: [
+    MatAutocompleteModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -57,14 +59,6 @@ import {MatSelectModule} from '@angular/material/select';
         path: 'mdb-edit',
         component: EditComponent
       },
-      {
-        path: 'mdb-msg',
-        component: MessageComponent
-      },
-      {
-        path: 'mdb-order',
-        component: OrderComponent
-      }, 
       {
         path: 'projects', 
         component: ProjectsComponent

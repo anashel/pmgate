@@ -3,9 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Todo } from './todos/todo';
 import { TodoDataService } from './todos/todo-data.service';
 import { Category } from './model/categories/category';
-import { MessageDataService } from './model/message/message-data.service';
-import { OrderComponent } from './components/orders/orders.component';
-import { MenuItemService } from './model/menu-item/menuitem-data.service';
 import { UserDataService } from './model/user/user-data.service';
 import { User } from './model/user/user';
 
@@ -13,7 +10,7 @@ import { User } from './model/user/user';
   selector: 'mdb-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  providers: [TodoDataService, CategoryDataService, MessageDataService, OrderComponent, MenuItemService, UserDataService]
+  providers: [TodoDataService, CategoryDataService, UserDataService]
 
 })
 
