@@ -4,7 +4,7 @@
     </h1>
     <br/>
 </div-->
-<br/>
+<br />
 
 <div class="row">
     <div class="col-md-3"></div>
@@ -17,46 +17,62 @@
             <div class="card-body mb-10">
                 <div class="text-xs-center text-center">
                     <h4>Name:</h4>
-                    <input type="text" class="form-control" name="pjname" id="inputNameProject" placeholder="Name of the new project" [(ngModel)]="newProject.name">
+                    <input type="text" class="form-control" name="pjname" id="inputNameProject" placeholder="Name of the new project"
+                        [(ngModel)]="newProject.name">
 
 
 
                     <h4>Dates:</h4>
-                    <br/>
+                    <br />
 
-                    <div class="md-form">
+           
 
                         <div class="row">
+
+
                             <div class="col-md-6">
-                                <p class="h6 mb-4">Start date</p>
-                                <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Start date" [(ngModel)]="newProject.startdate">
+                                <p>Start date:</p>
+                                <mat-form-field style="width:100%">
+                                    <input matInput [matDatepicker]="picker"  [(ngModel)]="newProject.startdate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+
                             </div>
                             <div class="col-md-6">
-                                <p class="h6 mb-4">End date</p>
-                                <input type="date" id="defaultContactFormEmail" class="form-control mb-4" placeholder="End date" [(ngModel)]="newProject.enddate">
+                                    <p>End date:</p>
+                                <mat-form-field style="width:100%">
+                                    <input matInput [matDatepicker]="picker2" [(ngModel)]="newProject.enddate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                </mat-form-field>
                             </div>
+
                         </div>
-                    </div>
-                    <br/>
+                 
+                    <br />
                     <h4>Description:</h4>
-                    <br/>
+                    <br />
                     <textarea matInput class="text-left" placeholder="Enter description" style="width:100%" [(ngModel)]="newProject.description">
+
                               </textarea>
-<br/>
+                    <br />
                     <mat-divider></mat-divider>
 
-                    <br/>
+                    <br />
 
                     <h4>Project Manager(s):</h4>
 
                     <mat-form-field class="example-chip-list">
                         <mat-chip-list #chipList>
-                            <mat-chip *ngFor="let pm of newProject.PM;let indx=index;" [selectable]="selectable" [removable]="removable" (removed)="removePM(pm,indx)">
+                            <mat-chip *ngFor="let pm of newProject.PM;let indx=index;" [selectable]="selectable"
+                                [removable]="removable" (removed)="removePM(pm,indx)">
                                 {{pm.username}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>
-                            <input type="text" placeholder="New PM..." #pmInput [formControl]="PMCtrl" [matAutocomplete]="autoPM" [matChipInputFor]="chipList"
-                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addPM($event)">
+                            <input type="text" placeholder="New PM..." #pmInput [formControl]="PMCtrl"
+                                [matAutocomplete]="autoPM" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addPM($event)">
                         </mat-chip-list>
                         <mat-autocomplete #autoPM="matAutocomplete" (optionSelected)="selectedPM($event)">
                             <mat-option *ngFor="let pm of FilteredPM | async" [value]="pm">
@@ -69,12 +85,15 @@
 
                     <mat-form-field class="example-chip-list">
                         <mat-chip-list #chipList2>
-                            <mat-chip *ngFor="let seint of newProject.SEint;let indx=index;" [selectable]="selectable" [removable]="removable" (removed)="removeSEint(seint,indx)">
+                            <mat-chip *ngFor="let seint of newProject.SEint;let indx=index;" [selectable]="selectable"
+                                [removable]="removable" (removed)="removeSEint(seint,indx)">
                                 {{seint.username}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>
-                            <input type="text" placeholder="New System Engineer..." #seintInput [formControl]="SEintCtrl" [matAutocomplete]="autoSEint" [matChipInputFor]="chipList2"
-                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addSEint($event)">
+                            <input type="text" placeholder="New System Engineer..." #seintInput [formControl]="SEintCtrl"
+                                [matAutocomplete]="autoSEint" [matChipInputFor]="chipList2"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                                (matChipInputTokenEnd)="addSEint($event)">
                         </mat-chip-list>
                         <mat-autocomplete #autoSEint="matAutocomplete" (optionSelected)="selectedSEint($event)">
                             <mat-option *ngFor="let seint of FilteredSEint | async" [value]="seint">
@@ -83,11 +102,36 @@
                         </mat-autocomplete>
                     </mat-form-field>
 
+                    <h4>SE ext(s):</h4>
+
+                    <mat-form-field class="example-chip-list">
+                        <mat-chip-list #chipList3>
+                            <mat-chip *ngFor="let seext of newProject.SEext;let indx=index;" [selectable]="selectable"
+                                [removable]="removable" (removed)="removeSEext(seext,indx)">
+                                {{seext.username}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input type="text" placeholder="New System Engineer exterior..." #seextInput [formControl]="SEextCtrl"
+                                [matAutocomplete]="autoSEext" [matChipInputFor]="chipList3"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                                (matChipInputTokenEnd)="addSEext($event)">
+                        </mat-chip-list>
+                        <mat-autocomplete #autoSEext="matAutocomplete" (optionSelected)="selectedSEext($event)">
+                            <mat-option *ngFor="let seext of FilteredSEext | async" [value]="seext">
+                                {{seext.username}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+
+
                     <!--pre>{{PMs|json}}</pre-->
                     <pre>
                     {{newProject|json}}
                 </pre>
 
+
+                    <button mat-raised-button color="primary" (click)="createProject()">Create</button>
                 </div>
             </div>
         </div>

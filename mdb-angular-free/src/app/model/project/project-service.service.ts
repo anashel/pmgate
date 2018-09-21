@@ -64,6 +64,12 @@ export class ProjectServiceService {
     this.allProjects.push(newProject);
   }
 
+  saveProject(project:Project) {
+    let id = Math.floor((Math.random() * 100000000) + 1);
+    project.id = id; 
+    this.allProjects.push(project);
+  }
+
   getJSON() {
     var projects = require('../../../assets/data/projects.json'); 
     console.log(projects);

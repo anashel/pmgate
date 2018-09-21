@@ -5,7 +5,6 @@ import { Project } from '../../model/project/project';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectServiceService } from '../../model/project/project-service.service';
 import { Topic } from '../../model/topics/topic';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Criteria } from '../../model/criterias/criteria';
 import * as jspdf from 'jspdf';  
 import html2canvas from 'html2canvas';  

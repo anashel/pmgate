@@ -10,7 +10,7 @@ import { TestComponent } from './components/test/test.component';
 import { RouterModule } from '@angular/router';
 import { EditComponent } from './components/edit/edit.component'; 
 
-import { MatAutocompleteModule, MatButtonModule, MatIconModule,MatExpansionModule, MatListModule, MatChipsModule, MatFormFieldModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatIconModule,MatExpansionModule, MatListModule, MatChipsModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatSnackBarModule } from '@angular/material';
 import { ProjectsComponent } from './components/projects/projects.component';
 import {MatTableModule} from '@angular/material/table';
 import { TablecomponentsComponent } from './components/tablecomponents/tablecomponents.component';
@@ -47,6 +47,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+    MatSnackBarModule,
     MatProgressBarModule,
     MatSelectModule
     ,
