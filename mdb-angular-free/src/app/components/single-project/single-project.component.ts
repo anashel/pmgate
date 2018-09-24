@@ -74,6 +74,8 @@ export class SingleProjectComponent implements OnInit {
   }
 
 
+
+
   isSelected(member: User) {
     return this.selectedTopic.members.indexOf(member) == -1;
   }
@@ -92,18 +94,18 @@ export class SingleProjectComponent implements OnInit {
   }
 
   submitTopicForValidation() {
-    this.updateTaskProgress(); 
+    this.updateTaskProgress();
     this.selectedTopic.status = "pending";
   }
 
   validateTopic() {
-    this.updateTaskProgress(); 
+    this.updateTaskProgress();
     this.selectedTopic.status = "open";
   }
 
 
   closeTopic() {
-    this.updateTaskProgress(); 
+    this.updateTaskProgress();
     this.selectedTopic.status = "closed";
   }
 
@@ -127,34 +129,134 @@ export class SingleProjectComponent implements OnInit {
   onSelectTopic(topic: Topic) {
     this.selectedTopic = topic;
     console.log(this.selectedTopic);
-    this.updateTaskProgress(); 
+    this.updateTaskProgress();
   }
 
   /**
    * Update the task progress from the selected topic
    */
-  updateTaskProgress(){
+  updateTaskProgress() {
     if (this.selectedTopic != null)
-    this.selectedTopicProgress = this.getTaskProgress(); 
+      this.selectedTopicProgress = this.getTaskProgress();
   }
+
+  /**
+   * Get the total of tasks in a project
+   */
+  getTotalCriteriaCount(): number {
+    let count: number = 0;
+    let thisPhase = this.selectedPhase;
+    this.myProject.topics.forEach(function (topic: Topic) {
+      if (topic.phase == thisPhase) {
+        topic.criterias.forEach(function (criteria: Criteria) {
+          count++;
+        })
+      }
+    });
+    return count;
+  }
+
+
+  /**
+   * Get the total of tasks in a project that are completed
+   */
+  getCompletedTaskCount(): number {
+    let count: number = 0;
+    let thisPhase = this.selectedPhase;
+    this.myProject.topics.forEach(function (topic: Topic) {
+      if (topic.phase == thisPhase) {
+        topic.criterias.forEach(function (criteria: Criteria) {
+          if (criteria.status == "ok")
+            count++;
+        })
+      }
+    });
+    return count;
+  }
+
+
+  /**
+   * Get the total of tasks in a project
+   */
+  getTodoTaskCount(): number {
+    let count: number = 0;
+    let thisPhase = this.selectedPhase;
+    this.myProject.topics.forEach(function (topic: Topic) {
+      if (topic.phase == thisPhase) {
+        topic.criterias.forEach(function (criteria: Criteria) {
+          if (criteria.status == "nok")
+            count++;
+        })
+      }
+    });
+    return count;
+  }
+
+  /**
+ * Get the total of tasks in a project by Priority and Status
+ */
+  getTaskCountByPriorityAndStatus(priority: string, status: string): number {
+    let count: number = 0;
+    let thisPhase = this.selectedPhase;
+    this.myProject.topics.forEach(function (topic: Topic) {
+      if (topic.phase == thisPhase) {
+        topic.criterias.forEach(function (criteria: Criteria) {
+          if (criteria.status == status && criteria.priority == priority)
+            count++;
+        })
+      }
+    });
+    return count;
+  }
+
+  /**
+   * Get the total of tasks todo in a topic
+   */
+  getTodoTaskCountInTopic(topic: Topic): number {
+    let count: number = 0;
+    let thisPhase = this.selectedPhase;
+    if (topic.phase == thisPhase) {
+      topic.criterias.forEach(function (criteria: Criteria) {
+        if (criteria.status == "nok")
+          count++;
+      })
+    };
+
+    return count;
+  }
+
+
+  /**
+   * Get total progress
+   */
+  get criteriaProgressTotal(): number {
+    let doneCriteriaLow: number = this.getTaskCountByPriorityAndStatus("low", "ok");
+    let doneCriteriaHigh: number = this.getTaskCountByPriorityAndStatus("high", "ok");
+    let todoCriteriaLow: number = this.getTaskCountByPriorityAndStatus("low", "nok");
+    let todoCriteriaHigh: number = this.getTaskCountByPriorityAndStatus("high", "nok");
+    let totalCriteria: number = (doneCriteriaHigh * 5) + doneCriteriaLow + (todoCriteriaHigh * 5) + todoCriteriaLow;
+    let completedCriteria: number = (doneCriteriaHigh * 5) + doneCriteriaLow;
+    return completedCriteria / totalCriteria * 100;
+  }
+
 
   /**
    * calculate progress of tasks
    */
-  getTaskProgress() :number{
+  getTaskProgress(): number {
     let lowPriority: Criteria[] = this.selectedTopic.criterias.filter((criteria: Criteria) => criteria.priority == 'low');
     let lowPriorityCount = lowPriority.length;
     let highPriority: Criteria[] = this.selectedTopic.criterias.filter((criteria: Criteria) => criteria.priority == 'high');
-    let highPriorityCount = highPriority.length; 
+    let highPriorityCount = highPriority.length;
 
     let lowPriorityCompleted: Criteria[] = this.selectedTopic.criterias.filter((criteria: Criteria) => criteria.priority == 'low' && criteria.status == 'ok');
     let lowPriorityCompletedCount = lowPriorityCompleted.length;
     let highPriorityCompleted: Criteria[] = this.selectedTopic.criterias.filter((criteria: Criteria) => criteria.priority == 'high' && criteria.status == 'ok');
-    let highPriorityCompletedCount = highPriorityCompleted.length; 
+    let highPriorityCompletedCount = highPriorityCompleted.length;
 
-    let doneCount = (highPriorityCompletedCount * 5 )  + lowPriorityCompletedCount; 
-    let totalCount = (highPriorityCount * 5 )  + lowPriorityCount; 
-    return doneCount / totalCount * 100; 
+    let doneCount = (highPriorityCompletedCount * 5) + lowPriorityCompletedCount;
+    let totalCount = (highPriorityCount * 5) + lowPriorityCount;
+    return doneCount / totalCount * 100;
   }
 
   /**
@@ -162,7 +264,7 @@ export class SingleProjectComponent implements OnInit {
    * @param phase 
    */
   selectPhase(phase: number) {
-    this.updateTaskProgress(); 
+    this.updateTaskProgress();
     this.selectedPhase = phase;
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == phase);
     this.selectedTopic = null;
@@ -173,7 +275,7 @@ export class SingleProjectComponent implements OnInit {
    * @param selectedMenu 
    */
   selectMenu(selectedMenu: string) {
-    this.updateTaskProgress(); 
+    this.updateTaskProgress();
     this.myMenuItem = selectedMenu;
   }
 
@@ -218,7 +320,7 @@ export class SingleProjectComponent implements OnInit {
    * Go to next phase in the diagram
    */
   goToNextPhase() {
-    this.updateTaskProgress(); 
+    this.updateTaskProgress();
     this.myProject.phase++;
     this.selectedPhase++;
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
@@ -277,7 +379,7 @@ export class SingleProjectComponent implements OnInit {
     else if (criteria.status == 'nok') {
       criteria.status = 'ok';
     }
-    this.updateTaskProgress(); 
+    this.updateTaskProgress();
     this.projectService.updateProject(this.myProject);
   }
 

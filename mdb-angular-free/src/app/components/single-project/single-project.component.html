@@ -1,20 +1,9 @@
 <div *ngIf="isAllowedProject()">
   <div id="contentToConvert">
-
-
-
     <div *ngIf="myUser != null ;" #editBlock>
-
-
-
       <div class="col-md-12 text-center">
-
       </div>
-
-
-
     </div>
-
     <div class="row mt-5">
       <div class="col-md-2 text-right"></div>
       <div class="col-md-8 text-center">
@@ -22,17 +11,11 @@
         </h1>
       </div>
       <div class="col-md-2 text-center">
-
         <button mat-mini-fab color="primary" (click)="captureScreen()">Report</button>
         <button mat-mini-fab color="primary" (click)="editProject()">Edit</button>
-
       </div>
-
     </div>
-
-
     <div class="row mt-5">
-
       <div class="col-md-4">
         <div class="card">
           <div class="card-body">
@@ -263,11 +246,11 @@
               <br />
               <div class="row">
                 <div class="col-md-6">
-                    <div class="text-center">
-                        <h5> Topics </h5>
-                      </div>
+                  <div class="text-center">
+                    <h5> Topics </h5>
+                  </div>
                   <table class="table">
-                   
+
                     <tbody>
                       <tr>
                         <td>
@@ -276,20 +259,7 @@
                         <td>Total:</td>
                         <td>{{getNumberTopics()}}</td>
                       </tr>
-                      <tr>
-                        <td>
-                          <i class="fa fa-circle red-text" aria-hidden="true"></i>
-                        </td>
-                        <td>New:</td>
-                        <td>{{getNumberTopicByStatus("new")}}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <i class="fa fa-circle orange-text" aria-hidden="true"></i>
-                        </td>
-                        <td>Pending:</td>
-                        <td>{{getNumberTopicByStatus("pending")}}</td>
-                      </tr>
+
                       <tr>
                         <td>
                           <i class="fa fa-circle yellow-text" aria-hidden="true"></i>
@@ -309,11 +279,33 @@
                   </table>
                 </div>
                 <div class="col-md-6">
+                  <div class="text-center">
+                    <h5> Criterias </h5>
+                  </div>
                   <table class="table">
-                    <div class="text-center">
-                      <h5> Criterias </h5>
-                    </div>
                     <tbody>
+                      <tr>
+                        <td>
+                          <i class="fa fa-circle blue-text" aria-hidden="true"></i>
+                        </td>
+                        <td>Total:</td>
+                        <td>{{getTotalCriteriaCount()}}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <i class="fa fa-circle red-text" aria-hidden="true"></i>
+                        </td>
+                        <td>To do:</td>
+                        <td>{{getTodoTaskCount()}}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <i class="fa fa-circle green-text" aria-hidden="true"></i>
+                        </td>
+                        <td>Completed:</td>
+                        <td>{{getCompletedTaskCount()}}</td>
+                      </tr>
+
                     </tbody>
                   </table>
                 </div>
@@ -323,10 +315,10 @@
               <div class="row">
 
                 <div class="col-md-4">
-                  <h5>Completion:</h5>
+                  <h5>Criteria completion:</h5>
                 </div>
                 <div class="col-md-8">
-                  <mat-progress-bar [value]="value" [color]="progressColor"></mat-progress-bar>
+                  <mat-progress-bar [value]="criteriaProgressTotal" [color]="progressColor"></mat-progress-bar>
                 </div>
               </div>
 
@@ -369,10 +361,13 @@
       <div class="col-md-2 offset-md-1 left-column mb-1">
 
         <ul class="list-group">
-          <li *ngFor="let topic of myTopics" class="list-group-item d-flex justify-content-between align-items-center"
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <h4>Topics: </h4>
+          </li>
+          <li *ngFor="let topic of myTopics" [ngClass]="{'bluebackground': topic==selectedTopic}" class="list-group-item d-flex justify-content-between align-items-center"
             (click)="onSelectTopic(topic)">
             <p>
-              <span matBadge="4" matBadgeOverlap="false">{{topic.name}}</span>
+              {{topic.name}} <span *ngIf="getTodoTaskCountInTopic(topic) > 0" class="button__badge">{{getTodoTaskCountInTopic(topic)}}</span>
             </p>
 
             <span *ngIf="topic.status == 'new'" class="badge red">{{topic.status}}</span>
@@ -394,7 +389,7 @@
         </ul>
       </div>
 
-      <div class="col-md-8 list mb-0">
+      <div class="col-md-8 list mb-0" id="mainTopic">
         <div class="card">
           <div class="card-body mb-4 text-center">
             <div *ngIf="selectedTopic != null">
@@ -471,7 +466,7 @@
                 <h4>Criteria:</h4>
               </div>
               <!--Table-->
-              <table class="table table-striped">
+              <table class="table">
 
                 <!--Table head-->
                 <thead>
@@ -491,7 +486,7 @@
                 <!--Table body-->
                 <tbody>
                   <!-- 1st project -->
-                  <tr *ngFor="let criteria of selectedTopic.criterias">
+                  <tr *ngFor="let criteria of selectedTopic.criterias" [ngClass]="{'lightgreebackground': criteria.status=='ok', 'lightredbackground': criteria.status == 'nok'}">
                     <td *ngIf="!canEditCriterias()">
                       <i *ngIf="criteria.status == 'ok'" class="fa fa-circle fa-2x green-text"></i>
                       <i *ngIf="criteria.status == 'nok'" class="fa fa-circle fa-2x red-text"></i>

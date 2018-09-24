@@ -164,7 +164,56 @@
         "members": [],
         "name": "Reglage internes",
         "phase": 2,
-        "criterias": []
+        "criterias": [
+          {
+            "status": "ok",
+            "name": "Clean machinery ",
+            "startdate": "2019-02-01",
+            "enddate": "2019-03-01",
+            "priority":"low",
+            "owner": {
+              "id": 4,
+              "username": "David Beckham",
+              "password": "admin",
+              "roleUser": "Project Manager",
+              "validated": false,
+              "email": "David.Beckham@gmail.com"
+            },
+            "comment": "First addition, I think this is a good example"
+          },
+          {
+            "status": "ok",
+            "name": "Delete auctions",
+            "startdate": "2020-01-01",
+            "enddate": "2021-09-01",
+            "priority":"high",
+            "owner": {
+              "id": 2,
+              "username": "Zinedine Zidane",
+              "password": "admin",
+              "roleUser": "Developeur",
+              "validated": false,
+              "email": "Zinedine.Zidane@gmail.com"
+            },
+            "comment": "Second addition of contributions"
+          },
+          {
+            "status": "nok",
+            "name": "Install machinery ",
+            "startdate": "2019-02-01",
+            "enddate": "2019-03-01",
+            "priority":"high",
+            "owner": {
+              "id": 4,
+              "username": "David Beckham",
+              "password": "admin",
+              "roleUser": "Project Manager",
+              "validated": false,
+              "email": "David.Beckham@gmail.com"
+            },
+            "comment": "Third addition, I think this is a correct example"
+          }
+        ]
       },
       {
         "status": "closed",
