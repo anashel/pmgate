@@ -375,9 +375,14 @@ export class SingleProjectComponent implements OnInit {
    * @param criteria Complete a criteria
    */
   toggleCriteria(criteria: Criteria) {
-    if (criteria.status == 'ok') { criteria.status = 'nok'; }
+    let today = new Date().toLocaleDateString("EN-GB"); 
+    if (criteria.status == 'ok') { 
+      criteria.status = 'nok';
+      criteria.comment += "\nCancelled on " + today + " by " + this.myUser.username;
+    }
     else if (criteria.status == 'nok') {
       criteria.status = 'ok';
+      criteria.comment += "\nCompleted on " + today + " by "+ this.myUser.username; 
     }
     this.updateTaskProgress();
     this.projectService.updateProject(this.myProject);
