@@ -31,3 +31,7 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .unicorn-dark-theme {
   @include angular-material-theme($dark-theme);
 }
+
+.backgroundColors{
+  background-color: #34568A;
+}

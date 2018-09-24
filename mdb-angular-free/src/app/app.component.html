@@ -32,7 +32,7 @@
     </form>
   </nav>
 
-  <div style="background-color: #001133">
+  <div class="backgroundColors">
     <router-outlet></router-outlet>
   </div>
 
@@ -42,169 +42,140 @@
 
 <ng-template #loginBlock>
 
-  <!--Jumbotron-->
-  <div class="jumbotron text-center">
 
-    <!--Title-->
-    <h1 class="card-title h2-responsive mt-2"><strong>Material Design for Bootstrap</strong></h1>
-    <!--Subtitle-->
-    <p class="blue-text mb-4 font-bold">Powerful and free Material Design UI KIT</p>
-
-    <!--Text-->
-    <div class="d-flex justify-content-center">
-      <p class="card-text mb-3" style="max-width: 43rem;">Sed ut perspiciatis unde omnis iste natus sit voluptatem
-        accusantium doloremque laudantium,
-        totam rem aperiam. Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium
-        doloremque laudantium, totam rem aperiam.
-      </p>
-    </div>
-
-    <hr class="my-4">
-
-    <button type="button" class="btn btn-blue waves-effect">Buy now <span class="fa fa-diamond ml-1"></span></button>
-    <button type="button" class="btn btn-outline-primary waves-effect">Download <i class="fa fa-download ml-1"></i></button>
-
-  </div>
-  <!--Jumbotron-->
-
-  <div class="row mt-5">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4 ">
-      <div class="col-sm-10">
-        <div class="text-center">
-          <img src="/assets/logo/Rafgate.png" width="150" alt="">
-        </div>
-      </div>
-
-
-    </div>
-    <div class="col-sm-4"></div>
-  </div>
-
-  <div class="row mt-5">
-
-
-  </div>
-
+  <div class="row mt-5"> </div>
+  <div class="row mt-5"> </div>
+  <div class="row mt-5"> </div>
+  <div class="row mt-5"> </div>
+  <div class="row mt-5"> </div>
+  
   <div class="row">
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
       <!-- Horizontal material form -->
-      <form>
-        <!-- Grid row -->
-        <div class="form-group row">
-          <!-- Material input -->
-          <!--label for="inputEmail3MD" class="col-sm-2 col-form-label" data-error="wrong" data-success="right">Email</label-->
-          <div class="col-sm-10">
-            <div class="md-form mt-0">
-              <i class="fa fa-envelope prefix"></i>
-              <input type="text" id="emailValue" name="mail" [(ngModel)]="emailValue" class="form-control validate"
-                placeholder="Email">
-
-
-            </div>
-          </div>
-        </div>
-        <!-- Grid row -->
-
-        <!-- Grid row -->
-        <div class="form-group row">
-          <!-- Material input -->
-          <!--label for="inputPassword3MD" class="col-sm-2 col-form-label">Password</label-->
-          <div class="col-sm-10">
-            <div class="md-form mt-0">
-              <i class="fa fa-lock prefix"></i>
-              <input type="password" class="form-control" name="pwd" id="inputPassword3MD" placeholder="Password"
-                [(ngModel)]="valuepassword">
-            </div>
-          </div>
-        </div>
-        <!-- Grid row -->
-
-        <!-- Grid row -->
-        <div class="form-group row text-center">
-          <div class="col-sm-10">
-            <button type="button" class="btn btn-blue-grey  waves-light" (click)="form.show()" mdbWavesEffect>
-              Register</button>
-            <button type="submit" class="btn btn-primary btn-lg" (click)="loginUser()">Sign in</button>
-
-
-          </div>
-          <div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog"
-            aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog cascading-modal" role="document">
-              <!--Content-->
-              <div class="modal-content">
-
-                <!--Header-->
-                <div class="modal-header light-blue darken-3 white-text">
-                  <h4 class="title">
-                    <i class="fa fa-pencil"></i> Registration</h4>
-                  <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close"
-                    (click)="form.hide()">
-                    <span aria-hidden="true">×</span>
-                  </button>
+      <div class="darkBorder">
+        <form>
+          <!-- Grid row -->
+          
+          <div class="form-group row">
+            <!-- Material input -->
+            <!--label for="inputEmail3MD" class="col-sm-2 col-form-label" data-error="wrong" data-success="right">Email</label-->
+            <div class="col-sm-12">
+              <div class="md-form mt-0">
+                <br /><br />
+                <div class="text-center">
+                  <img src="/assets/logo/Rafgate.png" width="150" alt="">
                 </div>
-                <!--Body-->
-                <div class="modal-body mb-0">
-                  <!-- Default form register -->
-                  <form class="text-center border border-light p-5">
-
-                    <p class="h4 mb-4">Sign up</p>
-
-                    <div class="form-row mb-4">
-
-                      <!-- First name -->
-                      <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Username">
+                <br /> <br />
+                <i class="fa fa-envelope prefix"></i>
+                <input type="text" id="emailValue" name="mail" [(ngModel)]="emailValue" class="form-control validate"
+                  placeholder="Email">
 
 
-                    </div>
-
-                    <!-- E-mail -->
-                    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
-
-                    <!-- Password -->
-                    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
-                      aria-describedby="defaultRegisterFormPasswordHelpBlock">
-                    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                      At least 8 characters and 1 digit
-                    </small>
-
-
-
-                    <!-- Newsletter -->
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
-                      <label class="custom-control-label" for="defaultRegisterFormNewsletter">Confirm registration to
-                        Rafgate</label>
-                    </div>
-
-                    <!-- Sign up button -->
-                    <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
-
-
-                    <hr>
-
-                    <!-- Terms of service -->
-
-                  </form>
-                  <!-- Default form register -->
-                </div>
               </div>
-              <!--/.Content-->
             </div>
           </div>
+          <!-- Grid row -->
 
-        </div>
-        <!-- Grid row -->
-      </form>
-      <!-- Horizontal material form -->
+          <!-- Grid row -->
+          <div class="form-group row">
+            <!-- Material input -->
+            <!--label for="inputPassword3MD" class="col-sm-2 col-form-label">Password</label-->
+            <div class="col-sm-12">
+              <div class="md-form mt-0">
+                <i class="fa fa-lock prefix"></i>
+                <input type="password" class="form-control" name="pwd" id="inputPassword3MD" placeholder="Password"
+                  [(ngModel)]="valuepassword">
+              </div>
+            </div>
+          </div>
+          <!-- Grid row -->
 
+          <!-- Grid row -->
+          <div class="form-group row text-center">
+            <div class="col-sm-12">
+              <button type="button" class="btn btn-blue-grey  waves-light" (click)="form.show()" mdbWavesEffect>
+                Register</button>
+              <button type="submit" class="btn btn-primary btn-lg" (click)="loginUser()">Sign in</button>
+            </div>
+
+            <br/><br/>
+
+          </div>
+          <!-- Grid row -->
+        </form>
+        <!-- Horizontal material form -->
+      </div>
     </div>
     <div class="col-sm-4"></div>
   </div>
 
 
+
+  <div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <!--Content-->
+      <div class="modal-content">
+
+        <!--Header-->
+        <div class="modal-header light-blue darken-3 white-text">
+          <h4 class="title">
+            <i class="fa fa-pencil"></i> Registration</h4>
+          <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <!--Body-->
+        <div class="modal-body mb-0">
+          <!-- Default form register -->
+          <form class="text-center border border-light p-5">
+
+            <p class="h4 mb-4">Sign up</p>
+
+            <div class="form-row mb-4">
+
+              <!-- First name -->
+              <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Username">
+
+
+            </div>
+
+            <!-- E-mail -->
+            <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+            <!-- Password -->
+            <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+              aria-describedby="defaultRegisterFormPasswordHelpBlock">
+            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+              At least 8 characters and 1 digit
+            </small>
+
+
+
+            <!-- Newsletter -->
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+              <label class="custom-control-label" for="defaultRegisterFormNewsletter">Confirm registration to
+                Rafgate</label>
+            </div>
+
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+
+
+            <hr>
+
+            <!-- Terms of service -->
+
+          </form>
+          <!-- Default form register -->
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>
+  <!--Modal-->
 
 
 </ng-template>
