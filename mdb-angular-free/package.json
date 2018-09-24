@@ -30,6 +30,7 @@
     "@angular2-material/radio": "^2.0.0-alpha.8-3",
     "@material/icon-button": "^0.36.0",
     "@material/icon-toggle": "^0.36.0",
+    "angular-material-badge": "^1.2.9",
     "angular-material-table": "^1.0.2",
     "arrive": "^2.4.1",
     "bootstrap": "^4.1.3",

@@ -1,0 +1,34 @@
+[
+    {
+        "id": "1",
+        "name": "PM"
+    },
+    {
+        "id": "2",
+        "name": "SEint"
+    },
+    {
+        "id": "3",
+        "name": "SEext"
+    },
+    {
+        "id": "4",
+        "name": "TC"
+    },
+    {
+        "id": "5",
+        "name": "SWFT"
+    },
+    {
+        "id": "6",
+        "name": "CCM"
+    },
+    {
+        "id": "7",
+        "name": "QM"
+    },
+    {
+        "id": "8",
+        "name": "SM"
+    }
+]

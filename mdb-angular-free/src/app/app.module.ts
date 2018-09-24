@@ -8,31 +8,34 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestComponent } from './components/test/test.component';
 import { RouterModule } from '@angular/router';
-import { EditComponent } from './components/edit/edit.component'; 
-
-import { MatAutocompleteModule, MatButtonModule, MatIconModule,MatExpansionModule, MatListModule, MatChipsModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatSnackBarModule } from '@angular/material';
+import { EditComponent } from './components/edit/edit.component';
+import { MatAutocompleteModule, MatButtonModule, MatIconModule, MatExpansionModule, MatListModule, MatChipsModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatSnackBarModule, MatStepperModule, MatRadioModule } from '@angular/material';
 import { ProjectsComponent } from './components/projects/projects.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { TablecomponentsComponent } from './components/tablecomponents/tablecomponents.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import {  ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
 import { ProjectpipePipe } from './pipes/projectpipe.pipe';
 import { SingleProjectComponent } from './components/single-project/single-project.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { EditProjectComponent } from './components/edit-project/edit-project.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, TestComponent, HomeComponent, EditComponent, ProjectsComponent, TablecomponentsComponent, FilterPipe, UserComponent, ProjectpipePipe, SingleProjectComponent,
+    AppComponent, TestComponent, HomeComponent, EditComponent, ProjectsComponent, TablecomponentsComponent, FilterPipe, UserComponent, ProjectpipePipe, SingleProjectComponent, EditProjectComponent,
   ],
   imports: [
+    
+    MatRadioModule,
     MatAutocompleteModule,
     BrowserModule,
+    MatStepperModule,
     BrowserAnimationsModule,
     FormsModule,
     MatButtonModule,
@@ -61,27 +64,31 @@ import {MatSelectModule} from '@angular/material/select';
         component: EditComponent
       },
       {
-        path: 'projects', 
+        path: 'projects',
         component: ProjectsComponent
       },
       {
-        path:'table',
+        path: 'table',
         component: TablecomponentsComponent
-      }, 
-      {
-        path:'test', 
-        component:TestComponent
       },
       {
-        path:'users', 
-        component:UserComponent
+        path: 'edit-project',
+        component: EditProjectComponent
       },
       {
-        path:'singleproject', 
-        component:SingleProjectComponent
-      }, 
+        path: 'test',
+        component: TestComponent
+      },
       {
-        path:"home",
+        path: 'users',
+        component: UserComponent
+      },
+      {
+        path: 'singleproject',
+        component: SingleProjectComponent
+      },
+      {
+        path: "home",
         component: HomeComponent
       }
     ]),

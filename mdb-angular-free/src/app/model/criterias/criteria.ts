@@ -7,10 +7,14 @@ export class Criteria {
     startdate: Date;
     enddate: Date; 
     comment: String; 
+    status: String; 
+    priority: String; 
 
 
 
-    constructor(values: Object = {}) {
+    constructor(values: Object = {}) {this.status ='nok'; 
+        this.priority = "low"; 
         Object.assign(this, values);
+        
     }
 }

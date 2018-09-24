@@ -8,19 +8,17 @@ import { User } from '../../model/user/user';
 import { UserDataService } from '../../model/user/user-data.service';
 import { Project } from '../../model/project/project';
 import { ProjectServiceService } from '../../model/project/project-service.service';
-import { Router } from '@angular/router';
-import { empty } from 'rxjs/observable/empty';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Loge } from '../../model/loges/loge';
+import { Location } from "@angular/common";
 
 @Component({
-  selector: 'mdb-home',
-  templateUrl: 'home.component.html',
-  styleUrls: ['home.component.css'],
-  providers: [ProjectServiceService, UserDataService]
-
+  selector: 'app-edit-project',
+  templateUrl: './edit-project.component.html',
+  styleUrls: ['./edit-project.component.scss'], 
+  providers:[UserDataService, ProjectServiceService]
 })
-
-export class HomeComponent implements OnInit {
+export class EditProjectComponent implements OnInit {
 
   visible = true;
   selectable = true;
@@ -32,8 +30,11 @@ export class HomeComponent implements OnInit {
   newLoge: Loge;
 
   //set FilteredList
-  constructor(public snackBar: MatSnackBar, private userDataService: UserDataService, private projectService: ProjectServiceService, private router: Router) {
-    this.newProject = new Project();
+  constructor(private location: Location, private route: ActivatedRoute, public snackBar: MatSnackBar, private userDataService: UserDataService, private projectService: ProjectServiceService, private router: Router) {
+    //getProject from queryparam
+    const projectIdInParam: string = this.route.snapshot.queryParamMap.get('projectid');
+    this.newProject = projectService.getProject(+projectIdInParam);
+    
     this.formSubmitted = false;
     this.newLoge = new Loge();
     this.FilteredPM = this.PMCtrl.valueChanges.pipe(
@@ -124,29 +125,6 @@ export class HomeComponent implements OnInit {
      );
   }
 
-
-  /*
-        id: number;
-      name: string;
-      startdate: Date;
-      enddate: Date;
-      type: string;
-      description: string;
-      PM: User[];
-      SEint: User[];
-      SEext: User[];
-      TC: User[];
-      SWFT: User[];
-      CCM: User[];
-      QM: User[];
-      SM: User[];
-      topics: Topic[];
-      loges: Loge[];
-      progress: number;
-      budget: number; 
-      phase: number; 
-  */
-
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
@@ -166,7 +144,7 @@ export class HomeComponent implements OnInit {
     this.newProject.loges.splice(toDelete, 1);
   }
 
-  createProject() {
+  updateProject() {
     this.formSubmitted = true;
     let toSaveProject: Project;
     console.log(this.newProject);
@@ -177,9 +155,10 @@ export class HomeComponent implements OnInit {
     
     if (validationValueProject)
     {
-    this.projectService.saveProject(toSaveProject);
-    this.router.navigateByUrl('/projects');
-    this.openSnackBar("New project", "Saved");
+    this.projectService.updateProject(toSaveProject);
+    //this.router.navigateByUrl('/projects');
+    this.location.back();
+    this.openSnackBar(toSaveProject.name, "Updated");
     }
   }
 
@@ -571,4 +550,5 @@ export class HomeComponent implements OnInit {
     let dd = String(value);
     return this.allSM.filter(sm => sm.username.toLowerCase().includes(dd.toLowerCase()));
   }
+
 }

@@ -1,4 +1,4 @@
-@include mat-progress-bar-theme($app-theme);
+
 
 .list {
     border: 1px solid rgba(0, 0, 0, 0.125);

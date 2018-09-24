@@ -23,6 +23,8 @@ export class Project {
     progress: number;
     budget: number; 
     phase: number; 
+    
+
 
 
 
@@ -39,6 +41,7 @@ export class Project {
         this.loges =[];
         this.progress =  0;
         this.phase = 0; 
+        this.type = "standard"; 
         Object.assign(this, values);
     }
 

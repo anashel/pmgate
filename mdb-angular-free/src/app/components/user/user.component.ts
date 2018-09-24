@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../model/user/user';
 import { UserDataService } from '../../model/user/user-data.service';
+import { Role } from '../../model/roles/role';
+import { RoleDataService } from '../../model/roles/role-data.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
-  providers: [ UserDataService]
+  providers: [ UserDataService, RoleDataService]
 })
 export class UserComponent implements OnInit {
   dataset: User[];
   selectedUser:User; 
-  
-  constructor(private userDataService:UserDataService) { }
+  roles: Role[]; 
+    
+  constructor(private userDataService:UserDataService, private roleDataService:RoleDataService) {
+    this.roles = roleDataService.roles; 
+   }
 
   ngOnInit() {
     //initializing the array

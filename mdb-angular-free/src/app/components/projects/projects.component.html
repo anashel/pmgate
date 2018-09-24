@@ -1,4 +1,4 @@
-<br/>
+<br />
 
 
 
@@ -6,8 +6,8 @@
   <h3 center>My Projects </h3>
 
 </div>
-<br/>
-<br/>
+<br />
+<br />
 
 <div class="row">
   <!-- Progress bars-->
@@ -22,7 +22,7 @@
       </div>
       <div class="col-md-2"> {{getNumberProjectByPhase(0)}}</div>
     </div>
-    <br/>
+    <br />
     <div class="row">
       <div class="col-md-2">Gate 1: </div>
       <div class="col-md-8">
@@ -30,7 +30,7 @@
       </div>
       <div class="col-md-2"> {{getNumberProjectByPhase(1)}}</div>
     </div>
-    <br/>
+    <br />
     <div class="row">
       <div class="col-md-2">Gate 2: </div>
       <div class="col-md-8">
@@ -38,7 +38,7 @@
       </div>
       <div class="col-md-2"> {{getNumberProjectByPhase(2)}}</div>
     </div>
-    <br/>
+    <br />
     <div class="row">
       <div class="col-md-2">Gate 3: </div>
       <div class="col-md-8">
@@ -46,7 +46,7 @@
       </div>
       <div class="col-md-2"> {{getNumberProjectByPhase(3)}}</div>
     </div>
-    <br/>
+    <br />
     <div class="row">
       <div class="col-md-2">Gate 4: </div>
       <div class="col-md-8">
@@ -54,7 +54,7 @@
       </div>
       <div class="col-md-2"> {{getNumberProjectByPhase(4)}}</div>
     </div>
-    <br/>
+    <br />
     <div class="row">
       <div class="col-md-2">Gate 5: </div>
       <div class="col-md-8">
@@ -62,7 +62,7 @@
       </div>
       <div class="col-md-2"> {{getNumberProjectByPhase(5)}}</div>
     </div>
-    <br/>
+    <br />
     <div class="row">
       <div class="col-md-2">Gate 6: </div>
       <div class="col-md-8">
@@ -70,7 +70,7 @@
       </div>
       <div class="col-md-2"> {{getNumberProjectByPhase(6)}}</div>
     </div>
-    <br/>
+    <br />
     <div class="row">
       <div class="col-md-2">Gate 7: </div>
       <div class="col-md-8">
@@ -87,7 +87,7 @@
   <div class="col-md-2"></div>
 
 </div>
-<br/>
+<br />
 <div class="card">
   <div class="card-body">
 
@@ -98,7 +98,8 @@
       <div class="col-md-12">
 
         <div class="input-group md-form form-sm form-2 pl-0 mb-0">
-          <input class="form-control my-0 py-1 grey-border" [(ngModel)]="searchProject" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control my-0 py-1 grey-border" [(ngModel)]="searchProject" type="search" placeholder="Search"
+            aria-label="Search">
 
 
           <div class="input-group-append">
@@ -115,6 +116,7 @@
 
     </div>
     <!-- Grid row -->
+
 
     <!--Table-->
     <table class="table table-striped">
@@ -138,16 +140,18 @@
         <tr *ngFor="let project of myProjects | projectpipe: searchProject">
           <th scope="row">{{project.id}}</th>
           <td>{{project.name}}</td>
-          <td>{{project.startdate}}</td>
-          <td>{{project.enddate}}</td>
+          <td>{{project.startdate | date}}</td>
+          <td>{{project.enddate | date }}</td>
           <td>
             Phase {{project.phase}}
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100"></div>
             </div>
           </td>
-          <td align="center">
+          <td text-align="center">
             <button type="button" (click)="openProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Enter</button>
+            <button type="button" (click)="editProject(project.id)" class="btn btn-primary btn-rounded btn-sm my-0">Edit</button>
           </td>
         </tr>
 
@@ -156,6 +160,7 @@
       <!--Table body-->
     </table>
     <!--Table-->
+
 
   </div>
 </div>

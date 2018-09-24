@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../model/user/user';
 import { UserDataService } from '../../model/user/user-data.service';
 import { Project } from '../../model/project/project';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectServiceService } from '../../model/project/project-service.service';
 import { Topic } from '../../model/topics/topic';
 import { Criteria } from '../../model/criterias/criteria';
-import * as jspdf from 'jspdf';  
-import html2canvas from 'html2canvas';  
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 
 @Component({
@@ -27,10 +27,10 @@ export class SingleProjectComponent implements OnInit {
   newTopic: Topic;
   newCriteria: Criteria;
   listUsers: User[];
-
+  selectedTopicProgress: number;
   progressColor = 'dribbble';
 
-  constructor(private userDataService: UserDataService, private projectService: ProjectServiceService, private route: ActivatedRoute) {
+  constructor(private router: Router, private userDataService: UserDataService, private projectService: ProjectServiceService, private route: ActivatedRoute) {
     this.myUser = userDataService.getPrincipal();
     this.myProject = new Project();
     const projectIdInParam: string = this.route.snapshot.queryParamMap.get('projectid');
@@ -38,6 +38,7 @@ export class SingleProjectComponent implements OnInit {
     this.newTopic = new Topic();
     this.newCriteria = new Criteria();
     this.selectedTopic = null;
+    this.selectedTopicProgress = 0;
     //set up selected section  and phase
     this.myMenuItem = "topics";
     this.selectedPhase = this.myProject.phase;
@@ -48,7 +49,23 @@ export class SingleProjectComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Verify if the user can see this project
+   */
+  isAllowedProject() {
+    let resp = this.projectService.isMember(this.myUser, this.myProject);
+    return resp || (this.myUser.roleUser == "admin");
+  }
 
+
+  /**
+   * 
+   */
+  get allMembers(): User[] {
+    let superArray: User[];
+    superArray = this.myProject.PM.concat(this.myProject.SEint).concat(this.myProject.SEext).concat(this.myProject.TC).concat(this.myProject.SWFT).concat(this.myProject.CCM).concat(this.myProject.QM).concat(this.myProject.SM);
+    return superArray;
+  }
   initialize() {
   }
 
@@ -75,15 +92,18 @@ export class SingleProjectComponent implements OnInit {
   }
 
   submitTopicForValidation() {
+    this.updateTaskProgress(); 
     this.selectedTopic.status = "pending";
   }
 
   validateTopic() {
+    this.updateTaskProgress(); 
     this.selectedTopic.status = "open";
   }
 
 
   closeTopic() {
+    this.updateTaskProgress(); 
     this.selectedTopic.status = "closed";
   }
 
@@ -101,12 +121,40 @@ export class SingleProjectComponent implements OnInit {
   }
 
   /**
-   * 
+   * Toggle topic selection
    * @param topic 
    */
   onSelectTopic(topic: Topic) {
     this.selectedTopic = topic;
     console.log(this.selectedTopic);
+    this.updateTaskProgress(); 
+  }
+
+  /**
+   * Update the task progress from the selected topic
+   */
+  updateTaskProgress(){
+    if (this.selectedTopic != null)
+    this.selectedTopicProgress = this.getTaskProgress(); 
+  }
+
+  /**
+   * calculate progress of tasks
+   */
+  getTaskProgress() :number{
+    let lowPriority: Criteria[] = this.selectedTopic.criterias.filter((criteria: Criteria) => criteria.priority == 'low');
+    let lowPriorityCount = lowPriority.length;
+    let highPriority: Criteria[] = this.selectedTopic.criterias.filter((criteria: Criteria) => criteria.priority == 'high');
+    let highPriorityCount = highPriority.length; 
+
+    let lowPriorityCompleted: Criteria[] = this.selectedTopic.criterias.filter((criteria: Criteria) => criteria.priority == 'low' && criteria.status == 'ok');
+    let lowPriorityCompletedCount = lowPriorityCompleted.length;
+    let highPriorityCompleted: Criteria[] = this.selectedTopic.criterias.filter((criteria: Criteria) => criteria.priority == 'high' && criteria.status == 'ok');
+    let highPriorityCompletedCount = highPriorityCompleted.length; 
+
+    let doneCount = (highPriorityCompletedCount * 5 )  + lowPriorityCompletedCount; 
+    let totalCount = (highPriorityCount * 5 )  + lowPriorityCount; 
+    return doneCount / totalCount * 100; 
   }
 
   /**
@@ -114,6 +162,7 @@ export class SingleProjectComponent implements OnInit {
    * @param phase 
    */
   selectPhase(phase: number) {
+    this.updateTaskProgress(); 
     this.selectedPhase = phase;
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == phase);
     this.selectedTopic = null;
@@ -124,6 +173,7 @@ export class SingleProjectComponent implements OnInit {
    * @param selectedMenu 
    */
   selectMenu(selectedMenu: string) {
+    this.updateTaskProgress(); 
     this.myMenuItem = selectedMenu;
   }
 
@@ -149,18 +199,35 @@ export class SingleProjectComponent implements OnInit {
 
   }
 
+  /**
+   * go to edit component
+   */
+  editProject() {
+    this.router.navigateByUrl('/edit-project?projectid=' + this.myProject.id);
+  }
+
+  /**
+   * Get the count of topics in the active project + selected phase
+   */
   getNumberTopics() {
     let filteredTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
     return filteredTopics.length;
   }
 
+  /**
+   * Go to next phase in the diagram
+   */
   goToNextPhase() {
+    this.updateTaskProgress(); 
     this.myProject.phase++;
     this.selectedPhase++;
     this.myTopics = this.myProject.topics.filter((topic: Topic) => topic.phase == this.selectedPhase);
     this.selectedTopic = null;
   }
 
+  /**
+   * Return to previous phase
+   */
   goToPreviousPhase() {
     this.myProject.phase--;
     this.selectedPhase--;
@@ -185,7 +252,7 @@ export class SingleProjectComponent implements OnInit {
    */
 
   canEditCriterias() {
-    return true;
+    return this.selectedTopic.status == 'new' || this.selectedTopic.status == 'pending';
   }
 
   /**
@@ -202,31 +269,46 @@ export class SingleProjectComponent implements OnInit {
   }
 
   /**
+   * 
+   * @param criteria Complete a criteria
+   */
+  toggleCriteria(criteria: Criteria) {
+    if (criteria.status == 'ok') { criteria.status = 'nok'; }
+    else if (criteria.status == 'nok') {
+      criteria.status = 'ok';
+    }
+    this.updateTaskProgress(); 
+    this.projectService.updateProject(this.myProject);
+  }
+
+  /**
    * Printing PDF
    */
+  public captureScreen() {
+    var data = document.getElementById('contentToConvert');
 
-
-  public captureScreen()  
-  {  
-    var data = document.getElementById('contentToConvert');  
-    
-    html2canvas(data).then(canvas => {  
+    html2canvas(data).then(canvas => {
       // Few necessary setting options  
-      var imgWidth = 208;   
-      var pageHeight = 295;    
-      var imgHeight = canvas.height * imgWidth / canvas.width;  
-      var heightLeft = imgHeight;  
-    
-      const contentDataURL = canvas.toDataURL('pdf')  
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('pdf')
       let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
-      var position = 0;  
-    //  pdf.addHTML(contentDataURL, 'pdf', 0, position, imgWidth, imgHeight);
+      var position = 0;
+      //  pdf.addHTML(contentDataURL, 'pdf', 0, position, imgWidth, imgHeight);
 
-   pdf.addImage(contentDataURL, 'pdf', 0, position, imgWidth, imgHeight)  
+      pdf.addImage(contentDataURL, 'pdf', 0, position, imgWidth, imgHeight)
       pdf.save('ProjectReport.pdf'); // Generated PDF   
-    });  
-    
+    });
+  }
 
-    
-  }  
+  /**
+   * verify if actual user is a PM 
+   */
+  isPM() {
+    let isInPMArray = this.myProject.PM.find((member: User) => member.id == this.myUser.id);
+    return (isInPMArray != null || this.myUser.roleUser == 'admin');
+  }
 }

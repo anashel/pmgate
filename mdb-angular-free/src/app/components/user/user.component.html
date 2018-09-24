@@ -135,14 +135,12 @@
 
         <label>Role</label>
         <select class="browser-default custom-select mb-4"  [(ngModel)]="selectedUser.roleUser" >
-          <option value="Analyste" selected>Analyste</option>
-          <option value="Développeur">Développeur</option>
-          <option value="Project Manager">Project Manager</option>
+          <option *ngFor="let role of roles" value="role" selected>{{role.name}}</option>
         </select>
 
 
 
-          <button align="center" type="button" class="btn btn-blue-grey  waves-light" (click)="saveUser(selectedUser); form.hide()"
+          <button text-align="center" type="button" class="btn btn-blue-grey  waves-light" (click)="saveUser(selectedUser); form.hide()"
             mdbWavesEffect>
             Save
           </button>

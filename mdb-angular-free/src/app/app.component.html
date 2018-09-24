@@ -19,10 +19,12 @@
         href="#loginBlock">New project</button>
       <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="users"
         href="#loginBlock">Users</button>
-      <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="singleproject"
-        href="#loginBlock">Single Project</button>
 
       <!--
+        <button *ngIf="principal.roleUser =='admin'" type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="singleproject"
+        href="#loginBlock">Single Project</button>
+
+    
       <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-home" href="#loginBlock">Home</button>
       <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-msg">Message</button>
       <button type="submit" class="btn btn-secondary btn-sm darkOrange" routerLink="mdb-order">Orders</button>
@@ -40,6 +42,30 @@
 
 <ng-template #loginBlock>
 
+  <!--Jumbotron-->
+  <div class="jumbotron text-center">
+
+    <!--Title-->
+    <h1 class="card-title h2-responsive mt-2"><strong>Material Design for Bootstrap</strong></h1>
+    <!--Subtitle-->
+    <p class="blue-text mb-4 font-bold">Powerful and free Material Design UI KIT</p>
+
+    <!--Text-->
+    <div class="d-flex justify-content-center">
+      <p class="card-text mb-3" style="max-width: 43rem;">Sed ut perspiciatis unde omnis iste natus sit voluptatem
+        accusantium doloremque laudantium,
+        totam rem aperiam. Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium
+        doloremque laudantium, totam rem aperiam.
+      </p>
+    </div>
+
+    <hr class="my-4">
+
+    <button type="button" class="btn btn-blue waves-effect">Buy now <span class="fa fa-diamond ml-1"></span></button>
+    <button type="button" class="btn btn-outline-primary waves-effect">Download <i class="fa fa-download ml-1"></i></button>
+
+  </div>
+  <!--Jumbotron-->
 
   <div class="row mt-5">
     <div class="col-sm-4"></div>
@@ -72,7 +98,8 @@
           <div class="col-sm-10">
             <div class="md-form mt-0">
               <i class="fa fa-envelope prefix"></i>
-              <input type="text" id="emailValue" name="mail" [(ngModel)]="emailValue" class="form-control validate" placeholder="Email">
+              <input type="text" id="emailValue" name="mail" [(ngModel)]="emailValue" class="form-control validate"
+                placeholder="Email">
 
 
             </div>
@@ -87,7 +114,8 @@
           <div class="col-sm-10">
             <div class="md-form mt-0">
               <i class="fa fa-lock prefix"></i>
-              <input type="password" class="form-control" name="pwd" id="inputPassword3MD" placeholder="Password" [(ngModel)]="valuepassword">
+              <input type="password" class="form-control" name="pwd" id="inputPassword3MD" placeholder="Password"
+                [(ngModel)]="valuepassword">
             </div>
           </div>
         </div>
@@ -102,8 +130,8 @@
 
 
           </div>
-          <div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
+          <div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog cascading-modal" role="document">
               <!--Content-->
               <div class="modal-content">
@@ -112,7 +140,8 @@
                 <div class="modal-header light-blue darken-3 white-text">
                   <h4 class="title">
                     <i class="fa fa-pencil"></i> Registration</h4>
-                  <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                  <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close"
+                    (click)="form.hide()">
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
@@ -135,7 +164,8 @@
                     <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
 
                     <!-- Password -->
-                    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+                    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
+                      aria-describedby="defaultRegisterFormPasswordHelpBlock">
                     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
                       At least 8 characters and 1 digit
                     </small>
@@ -145,7 +175,8 @@
                     <!-- Newsletter -->
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
-                      <label class="custom-control-label" for="defaultRegisterFormNewsletter">Confirm registration to Rafgate</label>
+                      <label class="custom-control-label" for="defaultRegisterFormNewsletter">Confirm registration to
+                        Rafgate</label>
                     </div>
 
                     <!-- Sign up button -->

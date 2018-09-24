@@ -25,25 +25,28 @@ export class ProjectsComponent implements OnInit {
   }
 
   logAllProjects() {
-    console.log(this.myProjects);
-    this.projectService.getJSON(); 
+    this.projectService.getJSON();
   }
 
   openProject(id: string) {
-    console.log(id);
-    this.projectService.getJSON(); 
+
+    this.projectService.getJSON();
     this.router.navigateByUrl('/singleproject?projectid=' + id);
   }
 
-  getNumberProjectByPhase(phase:number){
-    let filteredProjects = this.myProjects.filter((project:Project) => project.phase == phase);
-    return filteredProjects.length; 
+  editProject(id: String) {
+    this.router.navigateByUrl('/edit-project?projectid=' + id);
   }
 
-  getRelativeNumberProjectByPhase(phase:number){
+  getNumberProjectByPhase(phase: number) {
+    let filteredProjects = this.myProjects.filter((project: Project) => project.phase == phase);
+    return filteredProjects.length;
+  }
+
+  getRelativeNumberProjectByPhase(phase: number) {
     let totalprojects = this.myProjects.length;
-    let filteredProjects = this.myProjects.filter((project:Project) => project.phase == phase);
-    return filteredProjects.length / totalprojects * 100;  
+    let filteredProjects = this.myProjects.filter((project: Project) => project.phase == phase);
+    return filteredProjects.length / totalprojects * 100;
   }
 
 

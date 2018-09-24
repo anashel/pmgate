@@ -2,56 +2,196 @@
   {
     "id": 58231025,
     "name": "Maintenance Project PL124",
-    "startdate": "01-01-2012",
-    "enddate": "02-02-2013",
+    "startdate": "2018-09-30T22:00:00.000Z",
+    "enddate": "2018-12-28T23:00:00.000Z",
     "type": "Maintenance",
     "description": "This projejct is to maintain secltion PL124",
-    "PM": [],
-    "SEint": [],
-    "SEext": [],
-    "TC": [],
-    "SWFT": [],
-    "CCM": [],
-    "QM": [],
-    "SM": [],
+    "PM": [
+      {
+        "id": 4,
+        "username": "David Beckham",
+        "password": "admin",
+        "roleUser": "Project Manager",
+        "validated": false,
+        "email": "David.Beckham@gmail.com"
+      }
+    ],
+    "SEint": [
+      {
+        "id": 11,
+        "username": "cbeekmanna",
+        "email": "ajanauda@columbia.edu",
+        "password": "Female",
+        "roleUser": "Fosinopril Sodium and Hydrochlorothiazide"
+      }
+    ],
+    "SEext": [
+      {
+        "id": 2,
+        "username": "Zinedine Zidane",
+        "password": "admin",
+        "roleUser": "Developeur",
+        "validated": false,
+        "email": "Zinedine.Zidane@gmail.com"
+      }
+    ],
+    "TC": [
+      {
+        "id": 2,
+        "username": "Zinedine Zidane",
+        "password": "admin",
+        "roleUser": "Developeur",
+        "validated": false,
+        "email": "Zinedine.Zidane@gmail.com"
+      },
+      {
+        "id": 3,
+        "username": "Raul Gonzalez",
+        "password": "admin",
+        "roleUser": "Attaquant",
+        "validated": false,
+        "email": "Raul.Gonzalez@gmail.com"
+      }
+    ],
+    "SWFT": [
+      {
+        "id": 4,
+        "username": "David Beckham",
+        "password": "admin",
+        "roleUser": "Project Manager",
+        "validated": false,
+        "email": "David.Beckham@gmail.com"
+      }
+    ],
+    "CCM": [
+      {
+        "id": 1,
+        "username": "Anas Helalouch",
+        "roleUser": "Analyste",
+        "validated": false,
+        "email": "Anas.Helalouch@gmail.com",
+        "password": "admin"
+      }
+    ],
+    "QM": [
+      {
+        "id": 3,
+        "username": "Raul Gonzalez",
+        "password": "admin",
+        "roleUser": "Attaquant",
+        "validated": false,
+        "email": "Raul.Gonzalez@gmail.com"
+      }
+    ],
+    "SM": [
+      {
+        "id": 1,
+        "username": "Anas Helalouch",
+        "roleUser": "Analyste",
+        "validated": false,
+        "email": "Anas.Helalouch@gmail.com",
+        "password": "admin"
+      }
+    ],
     "topics": [
       {
         "status": "new",
         "members": [],
-        "name": "First Action", 
-        "phase": 2, 
-        "criterias":[]
+        "name": "Nettoyage des quais",
+        "phase": 2,
+        "criterias": [
+          {
+            "status": "nok",
+            "name": "Clean machinery ",
+            "startdate": "2019-02-01",
+            "enddate": "2019-03-01",
+            "priority":"high",
+            "owner": {
+              "id": 4,
+              "username": "David Beckham",
+              "password": "admin",
+              "roleUser": "Project Manager",
+              "validated": false,
+              "email": "David.Beckham@gmail.com"
+            },
+            "comment": "First addition, I think this is a good example"
+          },
+          {
+            "status": "ok",
+            "name": "Delete auctions",
+            "startdate": "2020-01-01",
+            "enddate": "2021-09-01",
+            "priority":"high",
+            "owner": {
+              "id": 2,
+              "username": "Zinedine Zidane",
+              "password": "admin",
+              "roleUser": "Developeur",
+              "validated": false,
+              "email": "Zinedine.Zidane@gmail.com"
+            },
+            "comment": "Second addition of contributions"
+          },
+          {
+            "status": "nok",
+            "name": "Install machinery ",
+            "startdate": "2019-02-01",
+            "enddate": "2019-03-01",
+            "priority":"high",
+            "owner": {
+              "id": 4,
+              "username": "David Beckham",
+              "password": "admin",
+              "roleUser": "Project Manager",
+              "validated": false,
+              "email": "David.Beckham@gmail.com"
+            },
+            "comment": "Third addition, I think this is a correct example"
+          }
+        ],
+        "startdate": "2018-09-15",
+        "enddate": "2020-07-24"
       },
       {
         "status": "pending",
         "members": [],
-        "name": "Second action", 
-        "phase": 2, 
-        "criterias":[]
+        "name": "Vérifier arrivages cadenas",
+        "phase": 2,
+        "criterias": []
       },
       {
         "status": "open",
         "members": [],
-        "name": "Second action", 
-        "phase": 2, 
-        "criterias":[]
+        "name": "Reglage internes",
+        "phase": 2,
+        "criterias": []
       },
       {
         "status": "closed",
         "members": [],
-        "name": "Second action", 
-        "phase": 2, 
-        "criterias":[]
+        "name": "Suppression de chaussées",
+        "phase": 2,
+        "criterias": []
       },
       {
         "status": "closed",
         "members": [],
-        "name": "Second action", 
-        "phase": 2, 
-        "criterias":[]
+        "name": "Validation collaborative",
+        "phase": 2,
+        "criterias": []
       }
     ],
-    "loges": [],
+    "loges": [
+      {
+        "name": "Loge AB334"
+      },
+      {
+        "name": "Loge RJ334"
+      },
+      {
+        "name": "Loge FJ343"
+      }
+    ],
     "progress": 0,
     "budget": 2000000,
     "phase": 2
@@ -59,20 +199,102 @@
   {
     "id": 58231069,
     "name": "Reparation Loges RP243",
-    "startdate": "01-01-2012",
-    "enddate": "02-02-2013",
+    "startdate": "2018-11-30T22:00:00.000Z",
+    "enddate": "2019-04-28T23:00:00.000Z",
     "type": "Maintenance",
     "description": "This projejct is to maintain secltion PL124",
-    "PM": [],
-    "SEint": [],
-    "SEext": [],
-    "TC": [],
-    "SWFT": [],
-    "CCM": [],
-    "QM": [],
-    "SM": [],
+    "PM": [
+      {
+        "id": 3,
+        "username": "Raul Gonzalez",
+        "password": "admin",
+        "roleUser": "Attaquant",
+        "validated": false,
+        "email": "Raul.Gonzalez@gmail.com"
+      }
+    ],
+    "SEint": [
+      {
+        "id": 2,
+        "username": "Zinedine Zidane",
+        "password": "admin",
+        "roleUser": "Developeur",
+        "validated": false,
+        "email": "Zinedine.Zidane@gmail.com"
+      }
+    ],
+    "SEext": [
+      {
+        "id": 3,
+        "username": "Raul Gonzalez",
+        "password": "admin",
+        "roleUser": "Attaquant",
+        "validated": false,
+        "email": "Raul.Gonzalez@gmail.com"
+      }
+    ],
+    "TC": [
+      {
+        "id": 4,
+        "username": "David Beckham",
+        "password": "admin",
+        "roleUser": "Project Manager",
+        "validated": false,
+        "email": "David.Beckham@gmail.com"
+      }
+    ],
+    "SWFT": [
+      {
+        "id": 3,
+        "username": "Raul Gonzalez",
+        "password": "admin",
+        "roleUser": "Attaquant",
+        "validated": false,
+        "email": "Raul.Gonzalez@gmail.com"
+      }
+    ],
+    "CCM": [
+      {
+        "id": 2,
+        "username": "Zinedine Zidane",
+        "password": "admin",
+        "roleUser": "Developeur",
+        "validated": false,
+        "email": "Zinedine.Zidane@gmail.com"
+      }
+    ],
+    "QM": [
+      {
+        "id": 2,
+        "username": "Zinedine Zidane",
+        "password": "admin",
+        "roleUser": "Developeur",
+        "validated": false,
+        "email": "Zinedine.Zidane@gmail.com"
+      }
+    ],
+    "SM": [
+      {
+        "id": 4,
+        "username": "David Beckham",
+        "password": "admin",
+        "roleUser": "Project Manager",
+        "validated": false,
+        "email": "David.Beckham@gmail.com"
+      }
+    ],
     "topics": [],
-    "loges": [],
+    "loges": [
+      {
+        "name": "Loge RT384"
+      },
+      {
+        "name": "Loge EJ343"
+      },
+      {
+        "name": "Loge DJ343"
+      }
+    ],
     "progress": 0,
     "budget": 5000000,
     "phase": 1
@@ -80,20 +302,102 @@
   {
     "id": 58231063,
     "name": "Proof of Concept:  POC223",
-    "startdate": "01-01-2012",
-    "enddate": "02-02-2013",
+    "startdate": "2019-09-02T22:00:00.000Z",
+    "enddate": "2019-12-23T23:00:00.000Z",
     "type": "Maintenance",
     "description": "Creation of new project here.",
-    "PM": [],
-    "SEint": [],
-    "SEext": [],
-    "TC": [],
-    "SWFT": [],
-    "CCM": [],
-    "QM": [],
-    "SM": [],
+    "PM": [
+      {
+        "id": 3,
+        "username": "Raul Gonzalez",
+        "password": "admin",
+        "roleUser": "Attaquant",
+        "validated": false,
+        "email": "Raul.Gonzalez@gmail.com"
+      }
+    ],
+    "SEint": [
+      {
+        "id": 1,
+        "username": "Anas Helalouch",
+        "roleUser": "Analyste",
+        "validated": false,
+        "email": "Anas.Helalouch@gmail.com",
+        "password": "admin"
+      }
+    ],
+    "SEext": [
+      {
+        "id": 4,
+        "username": "David Beckham",
+        "password": "admin",
+        "roleUser": "Project Manager",
+        "validated": false,
+        "email": "David.Beckham@gmail.com"
+      }
+    ],
+    "TC": [
+      {
+        "id": 2,
+        "username": "Zinedine Zidane",
+        "password": "admin",
+        "roleUser": "Developeur",
+        "validated": false,
+        "email": "Zinedine.Zidane@gmail.com"
+      }
+    ],
+    "SWFT": [
+      {
+        "id": 2,
+        "username": "Zinedine Zidane",
+        "password": "admin",
+        "roleUser": "Developeur",
+        "validated": false,
+        "email": "Zinedine.Zidane@gmail.com"
+      }
+    ],
+    "CCM": [
+      {
+        "id": 4,
+        "username": "David Beckham",
+        "password": "admin",
+        "roleUser": "Project Manager",
+        "validated": false,
+        "email": "David.Beckham@gmail.com"
+      }
+    ],
+    "QM": [
+      {
+        "id": 3,
+        "username": "Raul Gonzalez",
+        "password": "admin",
+        "roleUser": "Attaquant",
+        "validated": false,
+        "email": "Raul.Gonzalez@gmail.com"
+      }
+    ],
+    "SM": [
+      {
+        "id": 3,
+        "username": "Raul Gonzalez",
+        "password": "admin",
+        "roleUser": "Attaquant",
+        "validated": false,
+        "email": "Raul.Gonzalez@gmail.com"
+      }
+    ],
     "topics": [],
-    "loges": [],
+    "loges": [
+      {
+        "name": "Loge RU492"
+      },
+      {
+        "name": "Loge CN299"
+      },
+      {
+        "name": "Loge CJ393"
+      }
+    ],
     "progress": 0,
     "budget": 14000000,
     "phase": 0
