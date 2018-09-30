@@ -22,13 +22,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
+import { StepperDiagramComponent } from './components/single-project/stepper-diagram/stepper-diagram.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, TestComponent, HomeComponent, EditComponent, ProjectsComponent, TablecomponentsComponent, FilterPipe, UserComponent, ProjectpipePipe, SingleProjectComponent, EditProjectComponent,
+    AppComponent, TestComponent, HomeComponent, EditComponent, ProjectsComponent, TablecomponentsComponent, FilterPipe, UserComponent, ProjectpipePipe, SingleProjectComponent, EditProjectComponent, StepperDiagramComponent,
   ],
   imports: [
     

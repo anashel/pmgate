@@ -1,0 +1,160 @@
+
+<div class="row mt-5">
+ 
+    <div class="col-md-12">
+      <!-- Steps form -->
+      <div class="card">
+        <div class="card-body mb-10">
+
+          <h2 class="text-center font-weight-bold pt-4 pb-5">
+            <strong>Progression du projet</strong>
+          </h2>
+
+          <!-- Stepper -->
+          <div class="steps-form">
+
+            <div class="steps-row setup-panel">
+
+              <!-- Phase 0 -->
+              <div *ngIf="myProject.phase ==0" class="steps-step" (click)="selectPhase(0)">
+                <a type="button" class="btn btn-yellow btn-circle">0</a>
+                <p>
+                  <b>Phase 0</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 0" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 0" class="steps-step" (click)="selectPhase(0)">
+                <a type="button" class="btn btn-green btn-circle">0</a>
+                <p>
+                  Phase 0
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 0" aria-hidden="true"></i>
+              </div>
+
+              <!-- Phase 1 -->
+
+              <div *ngIf="myProject.phase ==1" class="steps-step" (click)="selectPhase(1)">
+                <a type="button" class="btn btn-yellow btn-circle">1</a>
+                <p>
+                  <b>Phase 1</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 1" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 1" class="steps-step" (click)="selectPhase(1)">
+                <a type="button" class="btn btn-red btn-circle">1</a>
+                <p>Phase 1</p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 1" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 1" class="steps-step" (click)="selectPhase(1)">
+                <a type="button" class="btn btn-green btn-circle">1</a>
+                <p>
+                  <b>Phase 1</b>
+                </p>
+                <i class="fa fa-arrow-up  fa-2x" *ngIf="selectedPhase == 1" aria-hidden="true"></i>
+              </div>
+
+
+
+              <!-- Phase 2 -->
+              <div *ngIf="myProject.phase ==2" class="steps-step" (click)="selectPhase(2)">
+                <a type="button" class="btn btn-yellow btn-circle">2</a>
+                <p>
+                  <b>Phase 2</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 2" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 2" class="steps-step" (click)="selectPhase(2)">
+                <a type="button" class="btn btn-green btn-circle" disabled="disabled">2</a>
+                <p>
+                  Phase 2
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 2" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 2" class="steps-step" (click)="selectPhase(2)">
+                <a type="button" class="btn btn-red btn-circle" disabled="disabled">2</a>
+                <p>
+                  Phase 2
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 2" aria-hidden="true"></i>
+              </div>
+
+              <!-- Phase 3 -->
+              <div *ngIf="myProject.phase ==3" class="steps-step" (click)="selectPhase(3)">
+                <a type="button" class="btn btn-yellow btn-circle">3</a>
+                <p>
+                  <b>Phase 3</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 3" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 3" class="steps-step" (click)="selectPhase(3)">
+                <a type="button" class="btn btn-green btn-circle" disabled="disabled">3</a>
+                <p>
+                  Phase 3
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 3" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 3" class="steps-step" (click)="selectPhase(3)">
+                <a type="button" class="btn btn-red btn-circle" disabled="disabled">3</a>
+                <p>
+                  Phase 3
+                </p>
+                <i class="fa fa-arrow-up  fa-2x" *ngIf="selectedPhase == 3" aria-hidden="true"></i>
+              </div>
+
+
+              <!-- Phase 4 -->
+              <div *ngIf="myProject.phase ==4" class="steps-step" (click)="selectPhase(4)">
+                <a type="button" class="btn btn-yellow btn-circle">4</a>
+                <p>
+                  <b>Phase 4</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x " *ngIf="selectedPhase == 4" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 4" class="steps-step" (click)="selectPhase(4)">
+                <a type="button" class="btn btn-green btn-circle" disabled="disabled">4</a>
+                <p>
+                  Phase 4
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 4" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 4" class="steps-step" (click)="selectPhase(4)">
+                <a type="button" class="btn btn-red btn-circle">4</a>
+                <p>
+                  <b>Phase 4</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 4" aria-hidden="true"></i>
+              </div>
+
+              <!-- Phase 5 -->
+              <div *ngIf="myProject.phase ==5" class="steps-step" (click)="selectPhase(5)">
+                <a type="button" class="btn btn-yellow btn-circle">5</a>
+                <p>
+                  <b>Phase 5</b>
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 5" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase > 5" class="steps-step" (click)="selectPhase(5)">
+                <a type="button" class="btn btn-green btn-circle" disabled="disabled">5</a>
+                <p>
+                  Phase 5
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 5" aria-hidden="true"></i>
+              </div>
+              <div *ngIf="myProject.phase < 5" class="steps-step" (click)="selectPhase(5)">
+                <a type="button" class="btn btn-red btn-circle" disabled="disabled">5</a>
+                <p>
+                  Phase 5
+                </p>
+                <i class="fa fa-arrow-up fa-2x" *ngIf="selectedPhase == 5" aria-hidden="true"></i>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+        <!-- Steps form -->
+      </div>
+    </div>
+  </div>
